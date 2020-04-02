@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://Kirill:11072005qwe@cluster-u140r.mongodb.net/rent-app?retryWrites=true&w=majority",
+  "jwtSecret": "dss101rentpp"
+}
