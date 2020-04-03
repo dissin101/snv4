@@ -1,7 +1,19 @@
-import React, { Fragment } from "react";
-import { NavLink, Redirect } from "react-router-dom";
+import React, { Fragment, useContext } from "react";
+import { NavLink, Redirect, useHistory } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
 const Navbar = isAuthenticated => {
+  //console.log(isAuthenticated.value.isAuthenticated);
+  const isAuth = isAuthenticated.value.isAuthenticated;
+  const history = useHistory();
+  const auth = useContext(AuthContext);
+
+  const logoutHandler = event => {
+    event.preventDefault();
+    auth.logout();
+    history.push("/");
+  };
+
   const noAuth = (
     <div>
       <form className='form-inline my-2 my-lg-0'>
@@ -14,6 +26,7 @@ const Navbar = isAuthenticated => {
       </form>
     </div>
   );
+
   return (
     <Fragment>
       <nav className='navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-info'>
@@ -39,9 +52,7 @@ const Navbar = isAuthenticated => {
               </NavLink>
             </li>
           </ul>
-          {isAuthenticated ? (
-            noAuth
-          ) : (
+          {isAuth ? (
             <form className='form-inline my-2 my-lg-0'>
               <NavLink
                 to='/personal-panel'
@@ -49,7 +60,15 @@ const Navbar = isAuthenticated => {
               >
                 Личный кабинет
               </NavLink>
+              <a
+                onClick={logoutHandler}
+                className='btn btn-danger my-2 mr-2 my-sm-0'
+              >
+                Выйти
+              </a>
             </form>
+          ) : (
+            noAuth
           )}
         </div>
         <Redirect to='/' />

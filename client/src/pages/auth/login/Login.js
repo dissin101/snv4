@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { useHttp } from "../../../hooks/http.hook";
 import { useMessage } from "../../../hooks/message.hook";
+import { AuthContext } from "../../../context/AuthContext";
 
 const Login = () => {
+  const auth = useContext(AuthContext);
   const message = useMessage();
   const { loading, request, error, clearError } = useHttp();
 
@@ -14,11 +16,10 @@ const Login = () => {
   });
 
   useEffect(() => {
-    //console.log("Error", error);
     message(error);
     if (error !== "" && error !== null) toast.error(error);
     clearError();
-  }, [error, message]);
+  }, [error, message, clearError]);
 
   const changeHandler = event => {
     setForm({ ...form, [event.target.name]: event.target.value });
@@ -27,7 +28,8 @@ const Login = () => {
   const loginHandler = async () => {
     try {
       const data = await request("/auth/login", "POST", { ...form });
-      console.log("Data", data);
+      console.log(data);
+      auth.login(data.token, data.userId);
     } catch (error) {}
   };
 
