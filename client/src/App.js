@@ -1,14 +1,14 @@
 import React, { Fragment } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Navbar } from "./components";
-import { Register, Login } from "./pages";
+import { Register, Login, Sale } from "./pages";
 import { useAuth } from "./hooks/auth.hook";
 import { AuthContext } from "./context/AuthContext";
 
 function App() {
   const { token, login, logout, userId } = useAuth();
   const isAuthenticated = !!token;
-  //const routes = Navbar(isAuthenticated);
+
   return (
     <AuthContext.Provider
       value={{ token, login, logout, userId, isAuthenticated }}
@@ -21,6 +21,7 @@ function App() {
               <Route exact path='/' />
               <Route path='/register' component={Register} />
               <Route path='/login' component={Login} />
+              <Route path='/sale' component={Sale} />
             </Switch>
           </div>
         </Fragment>

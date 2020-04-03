@@ -53,23 +53,12 @@ router.post(
 
       await user.save();
 
-      const payload = {
-        user: {
-          id: user.id
-        }
-      };
+      const token = jwt.sign({ userId: user.id }, config.get("jwtSecret"), {
+        expiresIn: "1h"
+      });
 
-      jwt.sign(
-        payload,
-        config.get("jwtSecret"),
-        { expiresIn: 3600000 }, // Время жизни токена, исправить на 3600
-        (err, token) => {
-          if (err) throw err;
-          res.json({ token });
-        }
-      );
-
-      res.status(201).json({ message: "Пользователь создан" });
+      console.log(token, user.id);
+      res.json({ token, userId: user.id });
     } catch (err) {
       console.error(err.message);
       res.status(500).send("Server error");

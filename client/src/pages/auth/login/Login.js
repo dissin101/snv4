@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { useHttp } from "../../../hooks/http.hook";
 import { useMessage } from "../../../hooks/message.hook";
@@ -7,6 +7,7 @@ import { AuthContext } from "../../../context/AuthContext";
 
 const Login = () => {
   const auth = useContext(AuthContext);
+  const isAuth = auth.isAuthenticated;
   const message = useMessage();
   const { loading, request, error, clearError } = useHttp();
 
@@ -28,7 +29,6 @@ const Login = () => {
   const loginHandler = async () => {
     try {
       const data = await request("/auth/login", "POST", { ...form });
-      console.log(data);
       auth.login(data.token, data.userId);
     } catch (error) {}
   };
@@ -99,6 +99,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+      {isAuth ? <Redirect to='/' /> : null}
     </div>
   );
 };

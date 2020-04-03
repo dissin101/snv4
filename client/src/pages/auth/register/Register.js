@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { Link, Redirect } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { useHttp } from "../../../hooks/http.hook";
 import { useMessage } from "../../../hooks/message.hook";
+import { AuthContext } from "../../../context/AuthContext";
 
 const Register = () => {
+  const auth = useContext(AuthContext);
+  const isAuth = auth.isAuthenticated;
   const message = useMessage();
   const { loading, request, error, clearError } = useHttp();
 
@@ -28,8 +31,7 @@ const Register = () => {
   const registerHandler = async () => {
     try {
       const data = await request("/user/register", "POST", { ...form });
-      //toast.success(data.json());
-      console.log(data);
+      auth.login(data.token, data.userId);
     } catch (error) {}
   };
 
@@ -125,6 +127,7 @@ const Register = () => {
           </article>
         </div>
       </div>
+      {isAuth ? <Redirect to='/personal-panel' /> : null}
     </div>
   );
 };

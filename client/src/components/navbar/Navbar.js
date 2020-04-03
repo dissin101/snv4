@@ -3,7 +3,6 @@ import { NavLink, Redirect, useHistory } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
 const Navbar = isAuthenticated => {
-  //console.log(isAuthenticated.value.isAuthenticated);
   const isAuth = isAuthenticated.value.isAuthenticated;
   const history = useHistory();
   const auth = useContext(AuthContext);
