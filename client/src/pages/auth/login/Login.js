@@ -71,7 +71,7 @@ const Login = () => {
                 />
               </div>
               <div className='form-group'>
-                <a className='float-right' href='#'>
+                <a className='float-right' href='#!'>
                   Забыли пароль?
                 </a>
 

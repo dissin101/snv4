@@ -59,12 +59,13 @@ const Navbar = isAuthenticated => {
               >
                 Личный кабинет
               </NavLink>
-              <a
+              <NavLink
+                to='logout'
                 onClick={logoutHandler}
                 className='btn btn-danger my-2 mr-2 my-sm-0'
               >
                 Выйти
-              </a>
+              </NavLink>
             </form>
           ) : (
             noAuth

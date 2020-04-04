@@ -1,24 +1,51 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-const Sale = () => {
-  const [hasError, setErrors] = useState(false);
-  const [planets, setPlanets] = useState({});
+class Sale extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: null,
+      isLoaded: false,
+      items: []
+    };
+  }
 
-  useEffect(() => {
-    async function fetchData() {
-      const res = await fetch("/sale");
-      res.json().then(res => setPlanets(res));
+  componentDidMount() {
+    fetch("/sale")
+      .then(res => res.json())
+      .then(
+        result => {
+          this.setState({
+            isLoaded: true,
+            items: result
+          });
+        },
+        error => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      );
+  }
+
+  render() {
+    const { error, isLoaded, items } = this.state;
+    console.log(items);
+    if (error) {
+      return <div>Ошибка: {error.message}</div>;
+    } else if (!isLoaded) {
+      return <div>Загрузка...</div>;
+    } else {
+      return (
+        <div>
+          {items.map(item => (
+            <p>{item.price}</p>
+          ))}
+        </div>
+      );
     }
+  }
+}
 
-    fetchData();
-  });
-
-  return (
-    <div>
-      <span>{JSON.stringify(planets)}</span>
-      <hr />
-      <span>Has error: {JSON.stringify(hasError)}</span>
-    </div>
-  );
-};
 export default Sale;

@@ -22,7 +22,7 @@ const Register = () => {
     message(error);
     if (error !== "" && error !== null) toast.error(error);
     clearError();
-  }, [error, message]);
+  }, [error, message, clearError]);
 
   const changeHandler = event => {
     setForm({ ...form, [event.target.name]: event.target.value });
