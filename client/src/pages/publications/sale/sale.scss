@@ -1,0 +1,15 @@
+.publications-wrapper {
+  margin: 2rem 0;
+
+  h1 {
+    font-size: 1.4rem;
+  }
+
+  .popular-publications,
+  .all-publications {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start !important;
+  }
+}
