@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import { useHttp } from "../../../hooks/http.hook";
-import { useMessage } from "../../../hooks/message.hook";
-import { AuthContext } from "../../../context/AuthContext";
+import { useHttp } from "../../hooks/http.hook";
+import { useMessage } from "../../hooks/message.hook";
+import { AuthContext } from "../../context/AuthContext";
 
 const Register = () => {
   const auth = useContext(AuthContext);
@@ -127,7 +127,7 @@ const Register = () => {
           </article>
         </div>
       </div>
-      {isAuth ? <Redirect to='/personal-panel' /> : null}
+      {isAuth ? <Redirect to='/personal-panel' /> : <div></div>}
     </div>
   );
 };

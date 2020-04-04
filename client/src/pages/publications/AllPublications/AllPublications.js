@@ -1,8 +1,8 @@
 import React from "react";
-import "./sale.scss";
-import { Publication } from "../../../components";
+import "../publications.scss";
+import { Publication } from "../../../components/Publication";
 
-class Sale extends React.Component {
+class AllPublications extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,7 +13,7 @@ class Sale extends React.Component {
   }
 
   componentDidMount() {
-    fetch("/sale")
+    fetch("/publications")
       .then(res => res.json())
       .then(
         result => {
@@ -65,4 +65,4 @@ class Sale extends React.Component {
   }
 }
 
-export default Sale;
+export default AllPublications;

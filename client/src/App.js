@@ -1,30 +1,21 @@
-import React, { Fragment } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import { useRoutes } from "./routes";
 import { Navbar } from "./components";
-import { Register, Login, Sale } from "./pages";
 import { useAuth } from "./hooks/auth.hook";
 import { AuthContext } from "./context/AuthContext";
 
 function App() {
   const { token, login, logout, userId } = useAuth();
   const isAuthenticated = !!token;
-
+  const routes = useRoutes();
   return (
     <AuthContext.Provider
       value={{ token, login, logout, userId, isAuthenticated }}
     >
       <Router>
-        <Fragment>
-          <Navbar value={{ isAuthenticated }} />
-          <div className='container mt-4 mb-4'>
-            <Switch>
-              <Route exact path='/' />
-              <Route path='/register' component={Register} />
-              <Route path='/login' component={Login} />
-              <Route path='/sale' component={Sale} />
-            </Switch>
-          </div>
-        </Fragment>
+        <Navbar value={{ isAuthenticated }} />
+        <div className='container'>{routes}</div>
       </Router>
     </AuthContext.Provider>
   );

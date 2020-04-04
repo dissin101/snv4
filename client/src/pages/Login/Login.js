@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import { useHttp } from "../../../hooks/http.hook";
-import { useMessage } from "../../../hooks/message.hook";
-import { AuthContext } from "../../../context/AuthContext";
+import { useHttp } from "../../hooks/http.hook";
+import { useMessage } from "../../hooks/message.hook";
+import { AuthContext } from "../../context/AuthContext";
 
 const Login = () => {
   const auth = useContext(AuthContext);
@@ -35,6 +35,7 @@ const Login = () => {
 
   return (
     <div>
+      {isAuth ? <Redirect to='/' /> : null}
       <ToastContainer
         position='top-right'
         autoClose={5000}
@@ -99,7 +100,6 @@ const Login = () => {
           </div>
         </div>
       </div>
-      {isAuth ? <Redirect to='/' /> : null}
     </div>
   );
 };

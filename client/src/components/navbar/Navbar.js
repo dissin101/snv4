@@ -1,5 +1,5 @@
 import React, { Fragment, useContext } from "react";
-import { NavLink, Redirect, useHistory } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
 const Navbar = isAuthenticated => {
@@ -12,20 +12,6 @@ const Navbar = isAuthenticated => {
     auth.logout();
     history.push("/");
   };
-
-  const noAuth = (
-    <div>
-      <form className='form-inline my-2 my-lg-0'>
-        <NavLink to='/login' className='btn btn-info my-2 mr-2 my-sm-0'>
-          Авторизация
-        </NavLink>
-        <NavLink to='/register' className='btn btn-primary my-2 my-sm-0'>
-          Регистрация
-        </NavLink>
-      </form>
-    </div>
-  );
-
   return (
     <Fragment>
       <nav className='navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-info'>
@@ -35,6 +21,11 @@ const Navbar = isAuthenticated => {
 
         <div className='collapse navbar-collapse' id='navbarSupportedContent'>
           <ul className='navbar-nav mr-auto'>
+            <li className='nav-item'>
+              <NavLink to='/publications' className='nav-link'>
+                Все объявления
+              </NavLink>
+            </li>
             <li className='nav-item'>
               <NavLink exact to='/sale' className='nav-link'>
                 Продажа
@@ -52,7 +43,7 @@ const Navbar = isAuthenticated => {
             </li>
           </ul>
           {isAuth ? (
-            <form className='form-inline my-2 my-lg-0'>
+            <div className='form-inline my-2 my-lg-0'>
               <NavLink
                 to='/personal-panel'
                 className='btn btn-info my-2 mr-2 my-sm-0'
@@ -66,12 +57,23 @@ const Navbar = isAuthenticated => {
               >
                 Выйти
               </NavLink>
-            </form>
+            </div>
           ) : (
-            noAuth
+            <div>
+              <form className='form-inline my-2 my-lg-0'>
+                <NavLink to='/login' className='btn btn-info my-2 mr-2 my-sm-0'>
+                  Авторизация
+                </NavLink>
+                <NavLink
+                  to='/register'
+                  className='btn btn-primary my-2 my-sm-0'
+                >
+                  Регистрация
+                </NavLink>
+              </form>
+            </div>
           )}
         </div>
-        <Redirect to='/' />
       </nav>
     </Fragment>
   );

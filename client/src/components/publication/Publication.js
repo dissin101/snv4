@@ -45,4 +45,4 @@ const Publication = ({
   );
 };
 
-export default Publication;
+export { Publication };
