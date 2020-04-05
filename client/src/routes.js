@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, Router, Redirect, Route } from "react-router-dom";
-import { Login, Register, AllPublications } from "./pages";
+import { Login, Register, AllPublications, Sale } from "./pages";
 
 export const useRoutes = isAuthenticated => {
   if (isAuthenticated) {
@@ -20,10 +20,10 @@ export const useRoutes = isAuthenticated => {
       <Route path='/restore-password' />
       <Route path='/add-publication' />
       <Route path='/publications' component={AllPublications} />
-      <Route path='/publications/sale' />
-      <Route path='/publications/sale/:id' />
-      <Route path='/publications/rent' />
-      <Route path='/publications/rent/:id' />
+      <Route path='/sale' component={Sale} />
+      <Route path='/sale/:id' />
+      <Route path='/rent' />
+      <Route path='/rent/:id' />
       <Redirect to='/' />
     </Switch>
   );

@@ -1,3 +1,4 @@
 import AllPublications from "./AllPublications";
+import Sale from "./Sale";
 
-export default AllPublications;
+export { AllPublications, Sale };

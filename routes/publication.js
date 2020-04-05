@@ -70,7 +70,15 @@ router.post(
 router.get("/", async (req, res) => {
   const publications = await Publication.find();
   res.json(publications);
-  console.log("/publications", req.params);
+});
+
+// @route  GET /publications/sale
+// @desc   Get Sale publications
+// @access Public
+
+router.get("/sale", async (req, res) => {
+  const publications = await Publication.find({ category: "Продажа" });
+  res.json(publications);
 });
 
 // @route  GET /sale/:id

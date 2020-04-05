@@ -5,6 +5,10 @@ const PublicationSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "users"
   },
+  category: {
+    type: String,
+    required: true
+  },
   type: {
     type: String,
     require: true

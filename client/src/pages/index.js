@@ -1,5 +1,5 @@
 import Login from "./Login";
 import Register from "./Register";
-import AllPublications from "./Publications";
+import { AllPublications, Sale } from "./Publications";
 
-export { Login, Register, AllPublications };
+export { Login, Register, AllPublications, Sale };

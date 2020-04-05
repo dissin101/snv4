@@ -22,12 +22,12 @@ const Navbar = isAuthenticated => {
         <div className='collapse navbar-collapse' id='navbarSupportedContent'>
           <ul className='navbar-nav mr-auto'>
             <li className='nav-item'>
-              <NavLink to='/publications' className='nav-link'>
+              <NavLink exact to='/publications' className='nav-link'>
                 Все объявления
               </NavLink>
             </li>
             <li className='nav-item'>
-              <NavLink exact to='/sale' className='nav-link'>
+              <NavLink to='/sale' className='nav-link'>
                 Продажа
               </NavLink>
             </li>
