@@ -1,0 +1,23 @@
+.product-card {
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  tr,
+  td,
+  h1 {
+    cursor: default;
+  }
+
+  //   .row {
+  //     display: flex;
+  //     flex-direction: row;
+  //     flex-wrap: wrap;
+  //   }
+
+  .product-description {
+    h1 {
+      font-size: 1.4rem;
+    }
+  }
+}

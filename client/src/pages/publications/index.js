@@ -1,4 +1,5 @@
 import AllPublications from "./AllPublications";
 import Sale from "./Sale";
+import ProductPage from "./ProductPage";
 
-export { AllPublications, Sale };
+export { AllPublications, Sale, ProductPage };
