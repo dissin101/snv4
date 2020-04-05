@@ -16,7 +16,7 @@ const Navbar = isAuthenticated => {
     <Fragment>
       <nav className='navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-info'>
         <NavLink className='navbar-brand' to='/'>
-          Аренда недвижимости
+          Недвижимость
         </NavLink>
 
         <div className='collapse navbar-collapse' id='navbarSupportedContent'>

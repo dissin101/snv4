@@ -67,7 +67,7 @@ router.post(
 // @desc   Get all publications
 // @access Public
 
-router.get("/", async (req, res) => {
+router.get("/publications", async (req, res) => {
   const publications = await Publication.find();
   res.json(publications);
 });

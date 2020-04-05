@@ -13,7 +13,7 @@ class Sale extends React.Component {
   }
 
   componentDidMount() {
-    fetch("/publications/sale")
+    fetch("/sale")
       .then(res => res.json())
       .then(
         result => {

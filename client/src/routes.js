@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Router, Redirect, Route } from "react-router-dom";
+import { Switch, Redirect, Route } from "react-router-dom";
 import { Login, Register, AllPublications, Sale, ProductPage } from "./pages";
 
 export const useRoutes = isAuthenticated => {
