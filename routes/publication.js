@@ -92,7 +92,6 @@ router.get("/sale/:id", async (req, res) => {
       return res.status(404).json({ msg: "Publication not found" });
     }
     res.json(publicationId);
-    console.log(publicationId);
   } catch (error) {}
 });
 

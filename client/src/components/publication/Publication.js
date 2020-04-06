@@ -11,7 +11,10 @@ const Publication = ({
   floor,
   floorsInBuilding,
   price,
-  images
+  images,
+  rooms,
+  area,
+  address,
 }) => {
   const { url } = useRouteMatch();
   return (
@@ -21,7 +24,7 @@ const Publication = ({
         <img src={images[1].image} alt='second_image' />
         <img src={images[2].image} alt='third_image' />
         <div className='publication-description'>
-          <h1>{}</h1>
+          <h1>{`${rooms}-комн. ${type}, ${area} м2, ${address}`}</h1>
           <p>Категория: {type}</p>
           <p>Город: {city}</p>
           <p>

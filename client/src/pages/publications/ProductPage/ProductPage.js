@@ -1,7 +1,11 @@
 import React from "react";
-import { useParams, useRouteMatch } from "react-router-dom";
+import CurrencyFormat from "react-currency-format";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import { YaMap } from "../../../components";
+import "react-tabs/style/react-tabs.scss";
+
 import "./productPage.scss";
 
 class ProductPage extends React.Component {
@@ -10,26 +14,25 @@ class ProductPage extends React.Component {
     this.state = {
       error: null,
       isLoaded: false,
-      publication: []
+      publication: [],
     };
   }
 
   componentDidMount() {
     const url = this.props.match.url;
-    console.log(url);
     fetch(`${url}`)
-      .then(res => res.json())
+      .then((res) => res.json())
       .then(
-        result => {
+        (result) => {
           this.setState({
             isLoaded: true,
-            publication: result
+            publication: result,
           });
         },
-        error => {
+        (error) => {
           this.setState({
             isLoaded: true,
-            error
+            error,
           });
         }
       );
@@ -48,11 +51,10 @@ class ProductPage extends React.Component {
           <div>
             <div class='container'>
               <h1 className='border-bottom pb-4 mt-1 mb-4'>
-                Заглушка описания
-                {/*publications[ID].mainInfo*/}
+                {`${publication.rooms}-комн. ${publication.type}, ${publication.area} м2, ${publication.address}`}
               </h1>
               <Carousel>
-                {publication.images.map(image => (
+                {publication.images.map((image) => (
                   <div>
                     <img src={image.image} />
                   </div>
@@ -69,12 +71,15 @@ class ProductPage extends React.Component {
                       </tr>
                       <tr>
                         <td>Число комнат</td>
-                        <td>VALUE</td>
+                        <td>{publication.rooms}</td>
                       </tr>
                       <tr>
                         <td>Этаж</td>
                         <td>
-                          {publication.floor} / {publication.floorInBuilding}
+                          {publication.floor}{" "}
+                          {publication.floorsInBuilding > 1 && (
+                            <span>/ {publication.floorsInBuilding}</span>
+                          )}
                         </td>
                       </tr>
                       <tr>
@@ -87,15 +92,36 @@ class ProductPage extends React.Component {
                       </tr>
                       <tr>
                         <td>Стоимость</td>
-                        <td>{publication.price}</td>
+                        <td>
+                          <CurrencyFormat
+                            value={publication.price}
+                            displayType={"text"}
+                            thousandSeparator={true}
+                          />
+                          &#8376;
+                        </td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
                 <div className='product-description ml-4'>
-                  <h1 className='mt-2'>Связаться с автором публикации</h1>
-                  <h1 className='mt-2'>Описание</h1>
-                  <p>{publication.description}</p>
+                  <Tabs>
+                    <TabList>
+                      <Tab>Описание</Tab>
+                      <Tab>Связаться с автором</Tab>
+                      <Tab>Карта</Tab>
+                    </TabList>
+
+                    <TabPanel>
+                      <p>{publication.description}</p>
+                    </TabPanel>
+                    <TabPanel>
+                      <h2>Any content 2</h2>
+                    </TabPanel>
+                    <TabPanel>
+                      <YaMap />
+                    </TabPanel>
+                  </Tabs>
                 </div>
               </div>
             </div>

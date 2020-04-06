@@ -1,6 +1,6 @@
 import React from "react";
 import "../publications.scss";
-import { Publication } from "../../../components/Publication";
+import { Publication, Filter } from "../../../components";
 
 class Sale extends React.Component {
   constructor(props) {
@@ -8,24 +8,24 @@ class Sale extends React.Component {
     this.state = {
       error: null,
       isLoaded: false,
-      publications: []
+      publications: [],
     };
   }
 
   componentDidMount() {
     fetch("/sale")
-      .then(res => res.json())
+      .then((res) => res.json())
       .then(
-        result => {
+        (result) => {
           this.setState({
             isLoaded: true,
-            publications: result
+            publications: result,
           });
         },
-        error => {
+        (error) => {
           this.setState({
             isLoaded: true,
-            error
+            error,
           });
         }
       );
@@ -33,7 +33,6 @@ class Sale extends React.Component {
 
   render() {
     const { error, isLoaded, publications } = this.state;
-    console.log(publications);
     if (error) {
       return <div>Ошибка: {error.message}</div>;
     } else if (!isLoaded) {
@@ -41,10 +40,10 @@ class Sale extends React.Component {
     } else {
       return (
         <div className='publications-wrapper'>
-          <h1>Объявления по продаже недвижимости</h1>
+          <Filter />
           <div className='all-publications'>
-            {publications.map(publication => (
-              <div>
+            {publications.map((publication) => (
+              <div key={publication._id}>
                 <Publication
                   key={publication._id}
                   id={publication._id}
@@ -55,6 +54,9 @@ class Sale extends React.Component {
                   area={publication.area}
                   price={publication.price}
                   images={publication.images}
+                  rooms={publication.rooms}
+                  area={publication.area}
+                  address={publication.address}
                 />
               </div>
             ))}

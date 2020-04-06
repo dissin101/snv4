@@ -13,6 +13,10 @@ const PublicationSchema = new mongoose.Schema({
     type: String,
     require: true
   },
+  rooms: {
+    type: Number,
+    require: true
+  },
   city: {
     type: String,
     require: true
