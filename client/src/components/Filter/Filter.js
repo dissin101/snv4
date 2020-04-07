@@ -1,6 +1,18 @@
 import React, { useState } from "react";
 
 const Filter = () => {
+  const [form, setForm] = useState({
+    city: "",
+    minPrice: "",
+    maxPrice: "",
+  });
+
+  const changeHandler = (event) => {
+    setForm({ ...form, [event.target.name]: event.target.value });
+  };
+
+  console.log(form.city);
+
   const [rentType] = useState(["", "Квартира", "Дом", "Коммерческая"]);
 
   const Type = rentType.map((Type) => Type);
@@ -28,7 +40,14 @@ const Filter = () => {
       <div className='row'>
         <div className='col col-sm-3 city-filter'>
           <p>Город</p>
-          <input type='text' />
+          <input
+            type='text'
+            id='city'
+            name='city'
+            className='form-control'
+            value={form.city}
+            onChange={changeHandler}
+          />
         </div>
 
         <div className='col'>
@@ -55,13 +74,29 @@ const Filter = () => {
 
         <div className='col col-sm-4 price-filter'>
           <p>Цена</p>
-          <input placeholder='От' type='number'></input>
+          <input
+            placeholder='От'
+            type='number'
+            value={form.minPrice}
+            onChange={changeHandler}
+          ></input>
           <span> - </span>
-          <input placeholder='До' type='number'></input>
+          <input
+            placeholder='До'
+            type='number'
+            value={form.maxPrice}
+            onChange={changeHandler}
+          ></input>
         </div>
 
         <div className='col col-sm-1'>
-          <button className='btn btn-danger'>Фильтр</button>
+          <button
+            className='btn btn-danger'
+            onClick={registerHandler}
+            disabled={loading}
+          >
+            Фильтр
+          </button>
         </div>
       </div>
     </div>
