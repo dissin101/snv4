@@ -17,7 +17,7 @@ export const useHttp = () => {
         const data = await response.json();
 
         if (!response.ok) {
-          //console.log(data.errors);
+          console.log(data.errors);
           if (data.errors !== undefined) {
             for (let a = 0; a < data.errors.length; a++) {
               console.log("Errs", data.errors[a].msg);

@@ -1,43 +1,32 @@
 import React, { useState } from "react";
-
 const Filter = () => {
-  const [form, setForm] = useState({
-    city: "",
-    minPrice: "",
-    maxPrice: "",
-  });
-
+  const [form, setForm] = useState({ city: "", minPrice: "", maxPrice: "" });
   const changeHandler = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value });
   };
 
-  console.log(form.city);
-
-  const [rentType] = useState(["", "Квартира", "Дом", "Коммерческая"]);
-
-  const Type = rentType.map((Type) => Type);
-
-  const handleRentTypeChange = (e) => {
-    console.log(rentType[e.target.value]);
+  const [rentType, setRentType] = useState("");
+  const rentHandle = (event) => {
+    setRentType(event.target.value);
   };
 
-  const [roomsCount] = useState([
-    "",
-    "1-комнатная",
-    "2-комнатная",
-    "3-комнатная",
-    "4-комнатная",
-  ]);
-
-  const Rooms = roomsCount.map((Rooms) => Rooms);
-
-  const handleRoomsCountChange = (e) => {
-    console.log(roomsCount[e.target.value]);
+  const [rooms, setRooms] = useState("");
+  const roomsHandle = (event) => {
+    setRooms(event.target.value);
   };
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log(form.city);
+    console.log(rentType);
+    console.log(rooms);
+    console.log(form.minPrice);
+    console.log(form.maxPrice);
+  }
 
   return (
     <div className='container navbar-dark bg-dark'>
-      <div className='row'>
+      <form className='row' onSubmit={handleSubmit}>
         <div className='col col-sm-3 city-filter'>
           <p>Город</p>
           <input
@@ -52,23 +41,22 @@ const Filter = () => {
 
         <div className='col'>
           <p>Тип недвижимости</p>
-          <select onChange={(e) => handleRentTypeChange(e)}>
-            {Type.map((type, key) => (
-              <option key={key} value={key}>
-                {type}
-              </option>
-            ))}
+          <select onChange={rentHandle} value={rentType}>
+            <option value=' '> </option>
+            <option value='Квартира'>Квартира</option>
+            <option value='Дом'>Дом</option>
+            <option value='Коммерческая'>Коммерческая</option>
           </select>
         </div>
 
         <div className='col'>
           <p>Количество комнат</p>
-          <select onChange={(e) => handleRoomsCountChange(e)}>
-            {Rooms.map((type, key) => (
-              <option key={key} value={key}>
-                {type}
-              </option>
-            ))}
+          <select onChange={roomsHandle} value={rooms}>
+            <option value=' '> </option>
+            <option value='1-комнатная'>1-комнатная</option>
+            <option value='2-комнатная'>2-комнатная</option>
+            <option value='3-комнатная'>3-комнатная</option>
+            <option value='4-комнатная'>4-комнатная</option>
           </select>
         </div>
 
@@ -77,6 +65,9 @@ const Filter = () => {
           <input
             placeholder='От'
             type='number'
+            id='minPrice'
+            name='minPrice'
+            className='form-control'
             value={form.minPrice}
             onChange={changeHandler}
           ></input>
@@ -84,21 +75,20 @@ const Filter = () => {
           <input
             placeholder='До'
             type='number'
+            id='maxPrice'
+            name='maxPrice'
+            className='form-control'
             value={form.maxPrice}
             onChange={changeHandler}
           ></input>
         </div>
 
         <div className='col col-sm-1'>
-          <button
-            className='btn btn-danger'
-            onClick={registerHandler}
-            disabled={loading}
-          >
+          <button type='submit' className='btn btn-success'>
             Фильтр
           </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 };
