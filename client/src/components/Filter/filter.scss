@@ -1,0 +1,59 @@
+.filter {
+  margin: 0 13px 1.25rem 13px;
+  padding: 10px;
+  justify-content: space-around;
+
+  .city-filter {
+    input {
+      width: 100%;
+    }
+  }
+
+  .price-filter {
+    div {
+      display: flex;
+      input {
+        width: 45%;
+        margin: 0 5px;
+      }
+    }
+  }
+
+  .col-sm-1 {
+    padding: 0;
+
+    button {
+      margin: 32px 0 10px 0;
+    }
+  }
+
+  p,
+  span {
+    color: #fff;
+    font-size: 1rem;
+    margin: 0 0 0.5rem 0;
+    padding: 0;
+  }
+
+  input {
+    border: 0;
+    border-radius: 5px;
+    font-size: 1rem;
+    padding: 0 5px;
+    margin: 0;
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  select {
+    border: 0;
+    border-radius: 0;
+    font-size: 1rem;
+    height: 38px;
+    width: 100%;
+  }
+}

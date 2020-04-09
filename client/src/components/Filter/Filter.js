@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import "./filter.scss";
+
 const Filter = () => {
   const [form, setForm] = useState({ city: "", minPrice: "", maxPrice: "" });
   const changeHandler = (event) => {
@@ -25,7 +27,7 @@ const Filter = () => {
   }
 
   return (
-    <div className='container navbar-dark bg-dark'>
+    <div className='container filter navbar-dark bg-dark'>
       <form className='row' onSubmit={handleSubmit}>
         <div className='col col-sm-3 city-filter'>
           <p>Город</p>
@@ -62,25 +64,27 @@ const Filter = () => {
 
         <div className='col col-sm-4 price-filter'>
           <p>Цена</p>
-          <input
-            placeholder='От'
-            type='number'
-            id='minPrice'
-            name='minPrice'
-            className='form-control'
-            value={form.minPrice}
-            onChange={changeHandler}
-          ></input>
-          <span> - </span>
-          <input
-            placeholder='До'
-            type='number'
-            id='maxPrice'
-            name='maxPrice'
-            className='form-control'
-            value={form.maxPrice}
-            onChange={changeHandler}
-          ></input>
+          <div>
+            <input
+              placeholder='От'
+              type='number'
+              id='minPrice'
+              name='minPrice'
+              className='form-control'
+              value={form.minPrice}
+              onChange={changeHandler}
+            ></input>
+            <span> - </span>
+            <input
+              placeholder='До'
+              type='number'
+              id='maxPrice'
+              name='maxPrice'
+              className='form-control'
+              value={form.maxPrice}
+              onChange={changeHandler}
+            ></input>
+          </div>
         </div>
 
         <div className='col col-sm-1'>
