@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import "./filter.scss";
 
-const Filter = () => {
+const Filter = (params) => {
   const [form, setForm] = useState({ city: "", minPrice: "", maxPrice: "" });
   const changeHandler = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value });
@@ -17,18 +16,16 @@ const Filter = () => {
     setRooms(event.target.value);
   };
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    console.log(form.city);
-    console.log(rentType);
-    console.log(rooms);
-    console.log(form.minPrice);
-    console.log(form.maxPrice);
-  }
-
+  const handleClick = () => {
+    params.setCityFilter(form.city);
+    params.setMinPriceFilter(form.minPrice);
+    params.setMaxPriceFilter(form.maxPrice);
+    params.setRentTypeFilter(rentType);
+    params.setRoomsFilter(rooms);
+  };
   return (
     <div className='container filter navbar-dark bg-dark'>
-      <form className='row' onSubmit={handleSubmit}>
+      <div className='row'>
         <div className='col col-sm-3 city-filter'>
           <p>Город</p>
           <input
@@ -88,11 +85,15 @@ const Filter = () => {
         </div>
 
         <div className='col col-sm-1'>
-          <button type='submit' className='btn btn-success'>
+          <button
+            type='button'
+            onClick={handleClick}
+            className='btn btn-success'
+          >
             Фильтр
           </button>
         </div>
-      </form>
+      </div>
     </div>
   );
 };
