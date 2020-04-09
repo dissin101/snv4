@@ -1,6 +1,6 @@
 import React from "react";
 import "../publications.scss";
-import { Publication } from "../../../components/Publication";
+import { Publication } from "../../../components";
 
 class AllPublications extends React.Component {
   constructor(props) {
@@ -8,24 +8,24 @@ class AllPublications extends React.Component {
     this.state = {
       error: null,
       isLoaded: false,
-      publications: []
+      publications: [],
     };
   }
 
   componentDidMount() {
     fetch("/publications")
-      .then(res => res.json())
+      .then((res) => res.json())
       .then(
-        result => {
+        (result) => {
           this.setState({
             isLoaded: true,
-            publications: result
+            publications: result,
           });
         },
-        error => {
+        (error) => {
           this.setState({
             isLoaded: true,
-            error
+            error,
           });
         }
       );
@@ -43,7 +43,7 @@ class AllPublications extends React.Component {
         <div className='publications-wrapper'>
           <h1>Все объявления</h1>
           <div className='all-publications'>
-            {publications.map(publication => (
+            {publications.map((publication) => (
               <div>
                 <Publication
                   key={publication._id}
