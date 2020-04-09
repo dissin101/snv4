@@ -13,7 +13,7 @@ const Login = () => {
 
   const [form, setForm] = useState({
     email: "",
-    password: ""
+    password: "",
   });
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const Login = () => {
     clearError();
   }, [error, message, clearError]);
 
-  const changeHandler = event => {
+  const changeHandler = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value });
   };
 
