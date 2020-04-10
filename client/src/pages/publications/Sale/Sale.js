@@ -18,7 +18,6 @@ const Sale = () => {
   const [maxPriceFilter, setMaxPriceFilter] = useState(null);
   const [rentTypeFilter, setRentTypeFilter] = useState("");
   const [roomsFilter, setRoomsFilter] = useState(null);
-  console.log(roomsFilter);
 
   if (publications.length === 0) {
     return <div className='mt-3'>Загрузка...</div>;
@@ -42,16 +41,18 @@ const Sale = () => {
   }
 
   function filterRooms(value) {
+    console.log(value.rooms);
     if (roomsFilter === null) {
       return value.rooms;
-    } else if (roomsFilter === value.rooms) {
+    } else if (roomsFilter == value.rooms) {
       return value.rooms;
     }
   }
 
-  const filterPublications = publications.filter(filterCity).filter(filterType);
-
-  //console.log(filterPublications);
+  const filterPublications = publications
+    .filter(filterCity)
+    .filter(filterType)
+    .filter(filterRooms);
 
   const showPublication = filterPublications.map((publication) => {
     const publicationCard = (

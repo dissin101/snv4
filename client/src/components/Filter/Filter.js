@@ -19,6 +19,10 @@ const Filter = (params) => {
 
   const handleClick = () => {
     params.setCityFilter(form.city);
+    params.setRentTypeFilter(rentType);
+    params.setRoomsFilter(rooms);
+    /*
+    params.setCityFilter(form.city);
     if (form.minPrice !== "") {
       params.setMinPriceFilter(form.minPrice);
     }
@@ -32,6 +36,7 @@ const Filter = (params) => {
       params.setRoomsFilter(rooms);
     }
     params.setRoomsFilter(null);
+    */
   };
   return (
     <div className='container filter navbar-dark bg-dark'>
@@ -63,7 +68,9 @@ const Filter = (params) => {
         <div className='col'>
           <p>Количество комнат</p>
           <select onChange={roomsHandle} value={rooms}>
-            <option value=' '> </option>
+            <option hidden value=' '>
+              {" "}
+            </option>
             <option value='1'>1-комнатная</option>
             <option value='2'>2-комнатная</option>
             <option value='3'>3-комнатная</option>
