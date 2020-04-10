@@ -1,2 +1,23 @@
 @import "~bootstrap/scss/bootstrap";
 @import "~react-toastify/dist/ReactToastify.min.css";
+
+body {
+    min-height: 100vh;
+  
+    #root {
+      min-height: 100vh;
+      display: flex;
+      flex-grow: 1;
+      flex-wrap: wrap;
+      flex-direction: column;
+  
+      .container {
+        flex-grow: 1;
+      }
+    }
+  
+    p, h1, h2, h3, h4, h5, h6, span {
+      cursor: default;
+    }
+    
+  }
