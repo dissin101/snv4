@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Publication } from "../../../components";
 import { Filter } from "../../../components";
 
-const Sale = () => {
+const Rent = () => {
   const [publications, setPublications] = useState([]);
 
   useEffect(() => {
-    fetch("/publications")
+    fetch("/rent")
       .then((response) => response.json())
       .then((data) => {
         setPublications(data);
@@ -91,4 +91,4 @@ const Sale = () => {
   );
 };
 
-export default Sale;
+export default Rent;

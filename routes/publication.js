@@ -12,7 +12,7 @@ const User = require("../models/User");
 router.post(
   "/add-publication",
   [
-    auth
+    auth,
     /*
     [
       check("text", "Text is required")
@@ -37,7 +37,7 @@ router.post(
       area,
       price,
       description,
-      images
+      images,
     } = req.body;
 
     // Build Publication Object
@@ -72,6 +72,20 @@ router.get("/publications", async (req, res) => {
   res.json(publications);
 });
 
+// @route  GET /publications/:id
+// @desc   Get publication by ID
+// @access Public
+
+router.get("/publications/:id", async (req, res) => {
+  try {
+    const publicationId = await Publication.findById(req.params.id);
+    if (!publicationId) {
+      return res.status(404).json({ msg: "Publication not found" });
+    }
+    res.json(publicationId);
+  } catch (error) {}
+});
+
 // @route  GET /publications/sale
 // @desc   Get Sale publications
 // @access Public
@@ -86,6 +100,29 @@ router.get("/sale", async (req, res) => {
 // @access Public
 
 router.get("/sale/:id", async (req, res) => {
+  try {
+    const publicationId = await Publication.findById(req.params.id);
+    if (!publicationId) {
+      return res.status(404).json({ msg: "Publication not found" });
+    }
+    res.json(publicationId);
+  } catch (error) {}
+});
+
+// @route  GET /rent
+// @desc   Get Rent publications
+// @access Public
+
+router.get("/rent", async (req, res) => {
+  const publications = await Publication.find({ category: "Аренда" });
+  res.json(publications);
+});
+
+// @route  GET /rent/:id
+// @desc   Get rent publications by ID
+// @access Public
+
+router.get("/rent/:id", async (req, res) => {
   try {
     const publicationId = await Publication.findById(req.params.id);
     if (!publicationId) {

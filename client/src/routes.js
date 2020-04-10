@@ -1,8 +1,15 @@
 import React from "react";
 import { Switch, Redirect, Route } from "react-router-dom";
-import { Login, Register, AllPublications, Sale, ProductPage } from "./pages";
+import {
+  Login,
+  Register,
+  AllPublications,
+  Sale,
+  ProductPage,
+  Rent,
+} from "./pages";
 
-export const useRoutes = isAuthenticated => {
+export const useRoutes = (isAuthenticated) => {
   if (isAuthenticated) {
     return (
       <Switch>
@@ -23,7 +30,7 @@ export const useRoutes = isAuthenticated => {
       <Route path='/publications/:id' component={ProductPage} />
       <Route path='/sale' exact component={Sale} />
       <Route path='/sale/:id' component={ProductPage} />
-      <Route path='/rent' exact />
+      <Route path='/rent' exact component={Rent} />
       <Route path='/rent/:id' component={ProductPage} />
       <Redirect to='/' />
     </Switch>
