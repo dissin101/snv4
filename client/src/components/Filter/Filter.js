@@ -20,23 +20,21 @@ const Filter = (params) => {
   const handleClick = () => {
     params.setCityFilter(form.city);
     params.setRentTypeFilter(rentType);
-    params.setRoomsFilter(rooms);
-    /*
-    params.setCityFilter(form.city);
-    if (form.minPrice !== "") {
-      params.setMinPriceFilter(form.minPrice);
-    }
-    params.setMinPriceFilter(null);
-    if (form.maxPrice !== "") {
-      params.setMaxPriceFilter(form.maxPrice);
-    }
-    params.setMaxPriceFilter(null);
-    params.setRentTypeFilter(rentType);
-    if (rooms !== null) {
+    if (rooms == "") {
+      params.setRoomsFilter(null);
+    } else {
       params.setRoomsFilter(rooms);
     }
-    params.setRoomsFilter(null);
-    */
+    if (form.minPrice == "") {
+      params.setMinPriceFilter(null);
+    } else {
+      params.setMinPriceFilter(form.minPrice);
+    }
+    if (form.maxPrice == "") {
+      params.setMaxPriceFilter(null);
+    } else {
+      params.setMaxPriceFilter(form.maxPrice);
+    }
   };
   return (
     <div className='container filter navbar-dark bg-dark'>

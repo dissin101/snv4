@@ -24,37 +24,39 @@ const Sale = () => {
   }
 
   function filterCity(value) {
-    if (cityFilter === "") {
-      return value.city;
-    } else if (cityFilter === value.city) {
-      return value.city;
-    }
+    if (cityFilter === "") return value.city;
+    if (cityFilter === value.city) return value.city;
   }
 
   function filterType(value) {
-    if (rentTypeFilter === "") {
-      //console.log(value.type);
-      return value.type;
-    } else if (rentTypeFilter === value.type) {
-      return value.type;
-    }
+    if (rentTypeFilter === "") return value.type;
+    if (rentTypeFilter === value.type) return value.type;
   }
 
   function filterRooms(value) {
-    console.log(value.rooms);
-    if (roomsFilter === null) {
-      return value.rooms;
-    } else if (roomsFilter == value.rooms) {
-      return value.rooms;
-    }
+    if (roomsFilter == null) return value.rooms;
+    if (roomsFilter == value.rooms) return value.rooms;
+  }
+
+  function filterMinPrice(value) {
+    if (minPriceFilter == null) return value.price;
+    if (minPriceFilter <= value.price) return value.price;
+  }
+
+  function filterMaxPrice(value) {
+    if (maxPriceFilter == null) return value.price;
+    if (maxPriceFilter >= value.price) return value.price;
   }
 
   const filterPublications = publications
     .filter(filterCity)
     .filter(filterType)
-    .filter(filterRooms);
+    .filter(filterRooms)
+    .filter(filterMinPrice)
+    .filter(filterMaxPrice);
 
   const showPublication = filterPublications.map((publication) => {
+    console.log(publication);
     const publicationCard = (
       <Publication
         key={publication._id}
@@ -88,41 +90,5 @@ const Sale = () => {
     </div>
   );
 };
-
-/*
-  const showPublication = publications.map((publication) => {
-    const publicationCard = (
-      <Publication
-        key={publication._id}
-        id={publication._id}
-        type={publication.type}
-        city={publication.city}
-        floor={publication.floor}
-        floorsInBuilding={publication.floorsInBuilding}
-        area={publication.area}
-        price={publication.price}
-        images={publication.images}
-        rooms={publication.rooms}
-        area={publication.area}
-        address={publication.address}
-      />
-    );
-
-    return publicationCard;
-  });
-  console.log(showPublication);
-
-  <div className='all-publications'>{showPublication}</div>
-
-
-    const filterPublications = publications
-    .filter((publ) => publ.city === cityFilter)
-    .filter((publ) => publ.price >= minPriceFilter)
-    .filter((publ) => publ.price <= maxPriceFilter)
-    .filter((publ) => publ.type === rentTypeFilter)
-    .filter((publ) => publ.rooms === roomsFilter);
-
-  
-  */
 
 export default Sale;
