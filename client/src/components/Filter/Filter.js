@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./filter.scss";
 
 const Filter = (params) => {
   const [form, setForm] = useState({ city: "", minPrice: "", maxPrice: "" });
@@ -18,10 +19,19 @@ const Filter = (params) => {
 
   const handleClick = () => {
     params.setCityFilter(form.city);
-    params.setMinPriceFilter(form.minPrice);
-    params.setMaxPriceFilter(form.maxPrice);
+    if (form.minPrice !== "") {
+      params.setMinPriceFilter(form.minPrice);
+    }
+    params.setMinPriceFilter(null);
+    if (form.maxPrice !== "") {
+      params.setMaxPriceFilter(form.maxPrice);
+    }
+    params.setMaxPriceFilter(null);
     params.setRentTypeFilter(rentType);
-    params.setRoomsFilter(rooms);
+    if (rooms !== null) {
+      params.setRoomsFilter(rooms);
+    }
+    params.setRoomsFilter(null);
   };
   return (
     <div className='container filter navbar-dark bg-dark'>
@@ -41,7 +51,9 @@ const Filter = (params) => {
         <div className='col'>
           <p>Тип недвижимости</p>
           <select onChange={rentHandle} value={rentType}>
-            <option value=' '> </option>
+            <option hidden value=' '>
+              {" "}
+            </option>
             <option value='Квартира'>Квартира</option>
             <option value='Дом'>Дом</option>
             <option value='Коммерческая'>Коммерческая</option>
@@ -52,10 +64,10 @@ const Filter = (params) => {
           <p>Количество комнат</p>
           <select onChange={roomsHandle} value={rooms}>
             <option value=' '> </option>
-            <option value='1-комнатная'>1-комнатная</option>
-            <option value='2-комнатная'>2-комнатная</option>
-            <option value='3-комнатная'>3-комнатная</option>
-            <option value='4-комнатная'>4-комнатная</option>
+            <option value='1'>1-комнатная</option>
+            <option value='2'>2-комнатная</option>
+            <option value='3'>3-комнатная</option>
+            <option value='4'>4-комнатная</option>
           </select>
         </div>
 
