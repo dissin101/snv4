@@ -1,13 +1,6 @@
 import React from "react";
 import { Switch, Redirect, Route } from "react-router-dom";
-import {
-  Login,
-  Register,
-  AllPublications,
-  Sale,
-  ProductPage,
-  Rent,
-} from "./pages";
+import { Login, Register, Publications, ProductPage } from "./pages";
 
 export const useRoutes = (isAuthenticated) => {
   if (isAuthenticated) {
@@ -26,11 +19,17 @@ export const useRoutes = (isAuthenticated) => {
       <Route path='/register' component={Register} />
       <Route path='/restore-password' />
       <Route path='/add-publication' />
-      <Route path='/publications' exact component={AllPublications} />
+      <Route exact path='/publications'>
+        <Publications value='publications' />
+      </Route>
       <Route path='/publications/:id' component={ProductPage} />
-      <Route path='/sale' exact component={Sale} />
+      <Route exact path='/sale'>
+        <Publications value='sale' />
+      </Route>
       <Route path='/sale/:id' component={ProductPage} />
-      <Route path='/rent' exact component={Rent} />
+      <Route exact path='/rent'>
+        <Publications value='rent' />
+      </Route>
       <Route path='/rent/:id' component={ProductPage} />
       <Redirect to='/' />
     </Switch>

@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Publication } from "../../../components";
-import { Filter } from "../../../components";
+import { Publication } from "../../components";
+import { Filter } from "../../components";
 
-const Sale = () => {
+const Publications = ({ value }) => {
+  console.log(value)
   const [publications, setPublications] = useState([]);
 
+
   useEffect(() => {
-    fetch("/publications")
+    fetch(`/${value}`)
       .then((response) => response.json())
       .then((data) => {
         setPublications(data);
       });
-  }, []);
+  }, [value, setPublications]);
 
   const [cityFilter, setCityFilter] = useState("");
   const [minPriceFilter, setMinPriceFilter] = useState(null);
@@ -56,7 +58,6 @@ const Sale = () => {
     .filter(filterMaxPrice);
 
   const showPublication = filterPublications.map((publication) => {
-    console.log(publication);
     const publicationCard = (
       <Publication
         key={publication._id}
@@ -91,4 +92,4 @@ const Sale = () => {
   );
 };
 
-export default Sale;
+export default Publications;

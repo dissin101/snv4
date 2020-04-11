@@ -1,5 +1,6 @@
-import Login from "./Login";
-import Register from "./Register";
-import { AllPublications, Sale, ProductPage, Rent } from "./publications";
+import Login from "./login";
+import Register from "./register";
+import Publications from "./publications";
+import ProductPage from "./productPage";
 
-export { Login, Register, AllPublications, Sale, ProductPage, Rent };
+export { Login, Register, Publications, ProductPage };

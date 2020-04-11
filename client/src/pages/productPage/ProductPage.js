@@ -3,7 +3,7 @@ import CurrencyFormat from "react-currency-format";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import { YaMap } from "../../../components";
+import { YaMap } from "../../components";
 import "react-tabs/style/react-tabs.scss";
 
 import "./productPage.scss";

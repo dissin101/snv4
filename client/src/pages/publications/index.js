@@ -1,6 +1,3 @@
-import AllPublications from "./AllPublications";
-import Sale from "./Sale";
-import ProductPage from "./ProductPage";
-import Rent from './Rent';
+import Publications from "./Publications";
 
-export { AllPublications, Sale, ProductPage, Rent };
+export default Publications;
