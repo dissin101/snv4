@@ -3,9 +3,7 @@ import { Publication } from "../../components";
 import { Filter } from "../../components";
 
 const Publications = ({ value }) => {
-  console.log(value)
   const [publications, setPublications] = useState([]);
-
 
   useEffect(() => {
     fetch(`/${value}`)
