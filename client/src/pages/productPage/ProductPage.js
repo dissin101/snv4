@@ -51,7 +51,11 @@ class ProductPage extends React.Component {
           <div>
             <div class='container'>
               <h4 className='border-bottom pb-4 mt-1 mb-4'>
-                {`${publication.rooms}-комн. ${publication.type.toLowerCase()}, площадь ${publication.area} м2, улица ${publication.address}`}
+                {`${
+                  publication.rooms
+                }-комн. ${publication.type.toLowerCase()}, площадь ${
+                  publication.area
+                } м2, улица ${publication.address}`}
               </h4>
               <Carousel>
                 {publication.images.map((image) => (
@@ -68,6 +72,10 @@ class ProductPage extends React.Component {
                       <tr>
                         <td>Город</td>
                         <td>{publication.city}</td>
+                      </tr>
+                      <tr>
+                        <td>Тип</td>
+                        <td>{publication.type}</td>
                       </tr>
                       <tr>
                         <td>Число комнат</td>
