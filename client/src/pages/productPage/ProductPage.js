@@ -70,6 +70,10 @@ class ProductPage extends React.Component {
                   <table class='table table-condensed table-hover'>
                     <tbody>
                       <tr>
+                        <td>Категория</td>
+                        <td>{publication.category}</td>
+                      </tr>
+                      <tr>
                         <td>Город</td>
                         <td>{publication.city}</td>
                       </tr>
