@@ -1,7 +1,7 @@
-import Navbar from "./navbar";
-import Publication from "./publication";
+import Navbar from "./Navbar";
+import Publication from "./Publication";
 //import YaMap from './map';
-import Filter from "./filter";
-import Footer from "./footer";
+import Filter from "./Filter";
+import Footer from "./Footer";
 
 export { Navbar, Publication, Filter, Footer };
