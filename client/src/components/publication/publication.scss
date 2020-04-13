@@ -1,7 +1,7 @@
 .publication-wrapper {
   width: 345px;
   height: 270px;
-  margin: 0 auto 2rem;
+  margin: 0 0.75rem 2rem;
 }
 
 .publication-wrapper:hover {
@@ -70,4 +70,12 @@
 .publication-description a:hover {
   background: #d10a0a;
   color: #fff;
+}
+
+
+@media screen and (max-width: 1000px){
+  .publication-wrapper {
+  width: 400px;
+  height: 350px;
+}
 }
