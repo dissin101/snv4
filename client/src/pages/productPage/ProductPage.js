@@ -3,7 +3,7 @@ import CurrencyFormat from "react-currency-format";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import { YaMap } from "../../components";
+//import { YaMap } from "../../components";
 import "react-tabs/style/react-tabs.scss";
 
 import "./productPage.scss";
@@ -50,9 +50,9 @@ class ProductPage extends React.Component {
         <div className='product-card border rounded mt-5 mb-5 pt-4 pr-3 pl-3 pb-4'>
           <div>
             <div class='container'>
-              <h1 className='border-bottom pb-4 mt-1 mb-4'>
-                {`${publication.rooms}-комн. ${publication.type}, ${publication.area} м2, ${publication.address}`}
-              </h1>
+              <h4 className='border-bottom pb-4 mt-1 mb-4'>
+                {`${publication.rooms}-комн. ${publication.type.toLowerCase()}, площадь ${publication.area} м2, улица ${publication.address}`}
+              </h4>
               <Carousel>
                 {publication.images.map((image) => (
                   <div>
@@ -116,10 +116,10 @@ class ProductPage extends React.Component {
                       <p>{publication.description}</p>
                     </TabPanel>
                     <TabPanel>
-                      <h2>Any content 2</h2>
+                      <p>Заглушка для связи с автором публикации. </p>
                     </TabPanel>
                     <TabPanel>
-                      <YaMap />
+                      <p>Заглушка для API карт.</p>
                     </TabPanel>
                   </Tabs>
                 </div>
