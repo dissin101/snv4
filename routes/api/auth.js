@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const config = require("config");
 const { check, validationResult } = require("express-validator");
 
-const User = require("../models/User");
+const User = require("../../models/User");
 
 // @route  POST auth/login
 // @desc   Authenicate user and get token
@@ -14,7 +14,7 @@ router.post(
   "/login",
   [
     check("email", "Пожалуйста, введите корректный Email").isEmail(),
-    check("password", "Поле обязательно для заполнения").exists()
+    check("password", "Поле обязательно для заполнения").exists(),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -40,7 +40,7 @@ router.post(
       }
 
       const token = jwt.sign({ userId: user.id }, config.get("jwtSecret"), {
-        expiresIn: "1h"
+        expiresIn: "1h",
       });
 
       res.json({ token, userId: user.id });

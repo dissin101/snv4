@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const { check, validationResult } = require("express-validator");
-const auth = require("../middleware/auth");
+const auth = require("../../middleware/auth");
 
-const Publication = require("../models/Publication");
-const User = require("../models/User");
+const Publication = require("../../models/Publication");
+const User = require("../../models/User");
 
 // @route  POST /publications/add-publication
 // @desc   Add new publication

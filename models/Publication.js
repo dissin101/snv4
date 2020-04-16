@@ -3,60 +3,60 @@ const mongoose = require("mongoose");
 const PublicationSchema = new mongoose.Schema({
   author: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "users"
+    ref: "user",
   },
   category: {
     type: String,
-    required: true
+    required: true,
   },
   type: {
     type: String,
-    require: true
+    require: true,
   },
   rooms: {
     type: Number,
-    require: true
+    require: true,
   },
   city: {
     type: String,
-    require: true
+    require: true,
   },
   address: {
     type: String,
-    require: true
+    require: true,
   },
   dateOfBuild: {
     type: Number,
-    require: true
+    require: true,
   },
   floor: {
-    type: Number
+    type: Number,
   },
   floorsInBuilding: {
-    type: Number
+    type: Number,
   },
   area: {
     type: Number,
-    require: true
+    require: true,
   },
   price: {
     type: Number,
-    require: true
+    require: true,
   },
   date: {
     type: Date,
-    default: Date.now
+    default: Date.now,
   },
   description: {
-    type: String
+    type: String,
   },
   images: [
     {
       image: {
-        type: String
-      }
-    }
-  ]
+        type: String,
+      },
+    },
+  ],
 });
 
 module.exports = Publication = mongoose.model("publication", PublicationSchema);

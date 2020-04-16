@@ -10,13 +10,14 @@ connectDB();
 
 // Init Middleware
 
-app.use(express.json({ extended: true }));
+app.use(express.json({ extended: false }));
 
 // Routes
 
-app.use("/auth", require("./routes/auth"));
-app.use("/user", require("./routes/users"));
-app.use("/", require("./routes/publication"));
+app.use("/auth", require("./routes/api/profile"));
+app.use("/user", require("./routes/api/user"));
+app.use("/profile", require("./routes/api/profile"));
+app.use("/", require("./routes/api/publication"));
 
 // Serve static assets in production
 

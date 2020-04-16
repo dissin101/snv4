@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const config = require("config");
 const { check, validationResult } = require("express-validator");
-const User = require("../models/User");
+const User = require("../../models/User");
 
 // @route  POST user/register
 // @desc   Register user
@@ -12,16 +12,14 @@ const User = require("../models/User");
 router.post(
   "/register",
   [
-    check("name", "Поле с именем обязательно для заполнения")
-      .not()
-      .isEmpty(),
+    check("name", "Поле с именем обязательно для заполнения").not().isEmpty(),
     check("surname", "Поле с фамилией обязательно для заполнения")
       .not()
       .isEmpty(),
     check("email", "Пожалуйста, укажите валидный Email").isEmail(),
     check("password", "Минимальная длинна пароля 6 символов").isLength({
-      min: 6
-    })
+      min: 6,
+    }),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -44,7 +42,7 @@ router.post(
         name,
         surname,
         email,
-        password
+        password,
       });
 
       const salt = await bcrypt.genSalt(10);
@@ -54,7 +52,7 @@ router.post(
       await user.save();
 
       const token = jwt.sign({ userId: user.id }, config.get("jwtSecret"), {
-        expiresIn: "1h"
+        expiresIn: "1h",
       });
 
       console.log(token, user.id);
