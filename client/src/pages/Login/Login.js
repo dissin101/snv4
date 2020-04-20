@@ -7,7 +7,6 @@ import { AuthContext } from "../../context/AuthContext";
 
 const Login = () => {
   const auth = useContext(AuthContext);
-  const isAuth = auth.isAuthenticated;
   const message = useMessage();
   const { loading, request, error, clearError } = useHttp();
 
@@ -35,7 +34,6 @@ const Login = () => {
 
   return (
     <div>
-      {isAuth ? <Redirect to='/' /> : null}
       <ToastContainer
         position='top-right'
         autoClose={5000}

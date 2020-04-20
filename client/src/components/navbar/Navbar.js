@@ -2,12 +2,12 @@ import React, { Fragment, useContext } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
-const Navbar = isAuthenticated => {
+const Navbar = (isAuthenticated) => {
   const isAuth = isAuthenticated.value.isAuthenticated;
   const history = useHistory();
   const auth = useContext(AuthContext);
 
-  const logoutHandler = event => {
+  const logoutHandler = (event) => {
     event.preventDefault();
     auth.logout();
     history.push("/");
@@ -45,7 +45,7 @@ const Navbar = isAuthenticated => {
           {isAuth ? (
             <div className='form-inline my-2 my-lg-0'>
               <NavLink
-                to='/personal-panel'
+                to='/profile/me'
                 className='btn btn-info my-2 mr-2 my-sm-0'
               >
                 Личный кабинет
