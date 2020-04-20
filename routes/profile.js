@@ -16,7 +16,17 @@ router.get("/me", auth, async (req, res) => {
   const token = req.header("x-auth-token");
   try {
     const decode = jwtDecode(token);
-    res.json(decode.userId);
+    const profile = await Profile.findOne({
+      user: decode.userId,
+    });
+
+    if (!profile) {
+      return res
+        .status(400)
+        .json({ message: "There is no profile for this user" });
+    }
+
+    res.json(profile);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
