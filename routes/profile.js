@@ -13,32 +13,6 @@ const jwtDecode = require("jwt-decode");
 // @access Private
 
 router.get("/me", auth, async (req, res) => {
-  const token = req.header("x-auth-token");
-  try {
-    const decode = jwtDecode(token);
-    const profile = await Profile.findOne({
-      user: decode.userId,
-    });
-
-    console.log(decode);
-
-    if (!profile) {
-      return res
-        .status(400)
-        .json({ message: "There is no profile for this user" });
-    }
-
-    res.json(profile);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server Error");
-  }
-});
-
-// @route  POST /profile
-// @desc   Create or update user profile
-// @access Privat
-router.post("/", auth, async (req, res) => {
   // Get user ID from token
   const token = req.header("x-auth-token");
   const decode = jwtDecode(token);
