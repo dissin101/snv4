@@ -7,7 +7,6 @@ import { AuthContext } from "../../context/AuthContext";
 
 const Register = () => {
   const auth = useContext(AuthContext);
-  const isAuth = auth.isAuthenticated;
   const message = useMessage();
   const { loading, request, error, clearError } = useHttp();
 
@@ -15,7 +14,7 @@ const Register = () => {
     name: "",
     surname: "",
     email: "",
-    password: ""
+    password: "",
   });
 
   useEffect(() => {
@@ -24,7 +23,7 @@ const Register = () => {
     clearError();
   }, [error, message, clearError]);
 
-  const changeHandler = event => {
+  const changeHandler = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value });
   };
 
@@ -127,7 +126,6 @@ const Register = () => {
           </article>
         </div>
       </div>
-      {isAuth ? <Redirect to='/personal-panel' /> : <div></div>}
     </div>
   );
 };

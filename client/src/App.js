@@ -9,7 +9,7 @@ import "./index.scss";
 function App() {
   const { token, login, logout, userId } = useAuth();
   const isAuthenticated = !!token;
-  const routes = useRoutes();
+  const routes = useRoutes(isAuthenticated);
   return (
     <AuthContext.Provider
       value={{ token, login, logout, userId, isAuthenticated }}

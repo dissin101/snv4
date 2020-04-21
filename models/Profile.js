@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const ProfileSchema = new mongoose.Schema({
+<<<<<<< HEAD
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
@@ -15,6 +16,8 @@ const ProfileSchema = new mongoose.Schema({
       },
     },
   ],
+=======
+>>>>>>> b5040443
   name: {
     type: String,
     require: true,
@@ -23,8 +26,18 @@ const ProfileSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
+<<<<<<< HEAD
   avatar: {
     type: String,
+=======
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "user",
+  },
+  email: {
+    type: String,
+    required: true,
+>>>>>>> b5040443
   },
 });
 
