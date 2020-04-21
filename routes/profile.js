@@ -20,6 +20,8 @@ router.get("/me", auth, async (req, res) => {
       user: decode.userId,
     });
 
+    console.log(decode);
+
     if (!profile) {
       return res
         .status(400)
@@ -51,6 +53,7 @@ router.post("/", auth, async (req, res) => {
 
     profileFields.name = userData.name;
     profileFields.surname = userData.surname;
+    profileFields.email = userData.email;
 
     if (profile) {
       // Update

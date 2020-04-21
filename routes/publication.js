@@ -11,16 +11,8 @@ const User = require("../models/User");
 // @access Private (FIX by add Auth)
 router.post(
   "/add-publication",
-  [
-    auth,
-    /*
-    [
-      check("text", "Text is required")
-        .not()
-        .isEmpty()
-    ]
-    */
-  ],
+  auth,
+
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
