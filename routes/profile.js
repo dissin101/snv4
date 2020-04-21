@@ -37,7 +37,7 @@ router.get("/me", auth, async (req, res) => {
 
 // @route  POST /profile
 // @desc   Create or update user profile
-// @access Private
+// @access Privat
 router.post("/", auth, async (req, res) => {
   // Get user ID from token
   const token = req.header("x-auth-token");
