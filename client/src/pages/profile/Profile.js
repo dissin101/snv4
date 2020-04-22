@@ -28,6 +28,10 @@ const Profile = () => {
     history.push("/");
   }
 
+  if (profileInfo.length == 0) {
+    return <div className='mt-3'>Загрузка...</div>;
+  }
+
   return (
     <div className='emp-profile border'>
       <div className='row'>

@@ -29,23 +29,15 @@ router.get("/me", auth, async (req, res) => {
     profileFields.surname = userData.surname;
     profileFields.email = userData.email;
 
-    if (profile) {
-      // Update
-      profile = await Profile.findOneAndUpdate(
-        { user: decode.userId },
-        { $set: profileFields },
-        { new: true }
-      );
+    if (!profile) {
+      // Create profile
+      profile = new Profile(profileFields);
 
-      return res.json(profile);
+      await profile.save();
+      res.json(profile);
     }
 
-    // Create
-
-    profile = new Profile(profileFields);
-
-    await profile.save();
-    res.json(profile);
+    return res.json(profile);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");
