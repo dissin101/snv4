@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import "./profile.scss";
 
 const Profile = () => {
@@ -35,7 +35,7 @@ const Profile = () => {
   return (
     <div className='emp-profile border'>
       <div className='row'>
-        <div className='col-md-3'>
+        <div className='col-md-4'>
           <div className='profile-img'>
             <img
               src='https://sun9-14.userapi.com/c206528/v206528135/f6dc9/S4EzUF9UDaE.jpg'
@@ -43,7 +43,7 @@ const Profile = () => {
             />
           </div>
         </div>
-        <div className='col-md-9'>
+        <div className='col-md-8'>
           <div className='profile-head'>
             <h5>{`${profileInfo.name} ${profileInfo.surname} `}</h5>
           </div>
@@ -54,11 +54,11 @@ const Profile = () => {
         <div className='col-md-4'>
           <div className='profile-work'>
             <p>Параметры аккаунта</p>
-            <a href=''>Мой профиль</a>
+            <Link to='/profile/me'>Мой профиль</Link>
             <br />
-            <a href=''>Мои публикации</a>
+            <Link to='/profile/publications'>Мои публикации</Link>
             <br />
-            <a href=''>Настройки</a>
+            <Link to='/profile/settings'>Настройки</Link>
           </div>
         </div>
         <div className='col-md-8 mt-5'>
