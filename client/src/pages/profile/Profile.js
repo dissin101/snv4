@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useHistory, Link } from "react-router-dom";
+import { ProfileInfo } from "../../components";
 import "./profile.scss";
 
 const Profile = (props) => {
@@ -33,52 +34,8 @@ const Profile = (props) => {
   }
 
   function ProfileTabs(props) {
-    console.log(props.value);
-    if (props.value === "me") {
-      return (
-        <div>
-          <div className='row'>
-            <div className='col-md-6'>
-              <label>Имя</label>
-            </div>
-            <div className='col-md-6'>
-              <p>{profileInfo.name}</p>
-            </div>
-          </div>
-          <div className='row'>
-            <div className='col-md-6'>
-              <label>Фамилия</label>
-            </div>
-            <div className='col-md-6'>
-              <p>{profileInfo.surname}</p>
-            </div>
-          </div>
-          <div className='row'>
-            <div className='col-md-6'>
-              <label>Email</label>
-            </div>
-            <div className='col-md-6'>
-              <p>{profileInfo.email}</p>
-            </div>
-          </div>
-          <div className='row'>
-            <div className='col-md-6'>
-              <label>Телефон</label>
-            </div>
-            <div className='col-md-6'>
-              {profileInfo.phone ? profileInfo.phone : <p>Не указан</p>}
-            </div>
-          </div>
-          <div className='row'>
-            <div className='col-md-6'>
-              <label>Число публикаций</label>
-            </div>
-            <div className='col-md-6'>
-              {profileInfo.publications ? profileInfo.publications : <p>0</p>}
-            </div>
-          </div>
-        </div>
-      );
+    if (props.route === "me") {
+      return <ProfileInfo value={props.profileInfo} />;
     }
   }
 
@@ -113,7 +70,7 @@ const Profile = (props) => {
         </div>
         <div className='col-md-8 mt-5'>
           <div className='tab-content profile-tab' id='myTabContent'>
-            <ProfileTabs value={props.value} />
+            <ProfileTabs route={props.value} profileInfo={profileInfo} />
           </div>
         </div>
       </div>
