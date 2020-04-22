@@ -20,17 +20,17 @@ const Filter = (params) => {
   const handleClick = () => {
     params.setCityFilter(form.city);
     params.setRentTypeFilter(rentType);
-    if (rooms == "") {
+    if (rooms === "") {
       params.setRoomsFilter(null);
     } else {
       params.setRoomsFilter(rooms);
     }
-    if (form.minPrice == "") {
+    if (form.minPrice === "") {
       params.setMinPriceFilter(null);
     } else {
       params.setMinPriceFilter(form.minPrice);
     }
-    if (form.maxPrice == "") {
+    if (form.maxPrice === "") {
       params.setMaxPriceFilter(null);
     } else {
       params.setMaxPriceFilter(form.maxPrice);

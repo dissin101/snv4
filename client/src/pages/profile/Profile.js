@@ -3,7 +3,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { useHistory, Link } from "react-router-dom";
 import "./profile.scss";
 
-const Profile = () => {
+const Profile = (props) => {
   const [profileInfo, setProfileInfo] = useState([]);
   const usrData = JSON.parse(localStorage.getItem("userData"));
   const history = useHistory();
@@ -22,14 +22,64 @@ const Profile = () => {
       });
   }, [setProfileInfo]);
 
-  if (profileInfo.msg == "Token is not valid") {
+  if (profileInfo.msg === "Token is not valid") {
     alert("Время сессии истекло, повторите авторизацию.");
     auth.logout();
     history.push("/");
   }
 
-  if (profileInfo.length == 0) {
+  if (profileInfo.length === 0) {
     return <div className='mt-3'>Загрузка...</div>;
+  }
+
+  function ProfileTabs(props) {
+    console.log(props.value);
+    if (props.value === "me") {
+      return (
+        <div>
+          <div className='row'>
+            <div className='col-md-6'>
+              <label>Имя</label>
+            </div>
+            <div className='col-md-6'>
+              <p>{profileInfo.name}</p>
+            </div>
+          </div>
+          <div className='row'>
+            <div className='col-md-6'>
+              <label>Фамилия</label>
+            </div>
+            <div className='col-md-6'>
+              <p>{profileInfo.surname}</p>
+            </div>
+          </div>
+          <div className='row'>
+            <div className='col-md-6'>
+              <label>Email</label>
+            </div>
+            <div className='col-md-6'>
+              <p>{profileInfo.email}</p>
+            </div>
+          </div>
+          <div className='row'>
+            <div className='col-md-6'>
+              <label>Телефон</label>
+            </div>
+            <div className='col-md-6'>
+              {profileInfo.phone ? profileInfo.phone : <p>Не указан</p>}
+            </div>
+          </div>
+          <div className='row'>
+            <div className='col-md-6'>
+              <label>Число публикаций</label>
+            </div>
+            <div className='col-md-6'>
+              {profileInfo.publications ? profileInfo.publications : <p>0</p>}
+            </div>
+          </div>
+        </div>
+      );
+    }
   }
 
   return (
@@ -45,7 +95,7 @@ const Profile = () => {
         </div>
         <div className='col-md-8'>
           <div className='profile-head'>
-            <h5>{`${profileInfo.name} ${profileInfo.surname} `}</h5>
+            <h5>{`${profileInfo.name} ${profileInfo.surname}`}</h5>
           </div>
           <div className='add-container border'>Блок рекламы</div>
         </div>
@@ -63,46 +113,7 @@ const Profile = () => {
         </div>
         <div className='col-md-8 mt-5'>
           <div className='tab-content profile-tab' id='myTabContent'>
-            <div className='row'>
-              <div className='col-md-6'>
-                <label>Имя</label>
-              </div>
-              <div className='col-md-6'>
-                <p>{profileInfo.name}</p>
-              </div>
-            </div>
-            <div className='row'>
-              <div className='col-md-6'>
-                <label>Фамилия</label>
-              </div>
-              <div className='col-md-6'>
-                <p>{profileInfo.surname}</p>
-              </div>
-            </div>
-            <div className='row'>
-              <div className='col-md-6'>
-                <label>Email</label>
-              </div>
-              <div className='col-md-6'>
-                <p>{profileInfo.email}</p>
-              </div>
-            </div>
-            <div className='row'>
-              <div className='col-md-6'>
-                <label>Телефон</label>
-              </div>
-              <div className='col-md-6'>
-                {profileInfo.phone ? profileInfo.phone : <p>Не указан</p>}
-              </div>
-            </div>
-            <div className='row'>
-              <div className='col-md-6'>
-                <label>Число публикаций</label>
-              </div>
-              <div className='col-md-6'>
-                {profileInfo.publications ? profileInfo.publications : <p>0</p>}
-              </div>
-            </div>
+            <ProfileTabs value={props.value} />
           </div>
         </div>
       </div>

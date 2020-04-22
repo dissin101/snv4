@@ -8,8 +8,8 @@ const auth = require("../middleware/auth");
 const jwt = require("jsonwebtoken");
 const jwtDecode = require("jwt-decode");
 
-// @route  GET api/profile/me
-// @desc   Get current users profile
+// @route  GET /profile/me
+// @desc   Create and GET current users profile
 // @access Private
 
 router.get("/me", auth, async (req, res) => {
@@ -43,4 +43,41 @@ router.get("/me", auth, async (req, res) => {
     res.status(500).send("Server error");
   }
 });
+
+// @route  GET /profile/settings
+// @desc   Change user profile
+// @access Private
+
+router.post("/settings", auth, async (req, res) => {
+  const { name, surname, phone, password } = req.body;
+
+  // Get user ID from token
+  const token = req.header("x-auth-token");
+  const decode = jwtDecode(token);
+
+  // Build profile object
+  const profileFields = {};
+  profileFields.user = decode.userId;
+  if (name) profileFields.name = name;
+  if (surname) profileFields.surname = surname;
+  if (phone) profileFields.phone = phone;
+  try {
+    let profile = await Profile.findOne({ user: decode.userId });
+
+    if (profile) {
+      // Update profile
+      profile = await Profile.findOneAndUpdate(
+        { user: decode.userId },
+        { $set: profileFields },
+        { new: true }
+      );
+
+      return res.json(profile);
+    }
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+});
+
 module.exports = router;
