@@ -6,7 +6,6 @@ export const useRoutes = (isAuthenticated) => {
   if (isAuthenticated) {
     return (
       <Switch>
-        <Route path='/' exact />
         <Route exact path='/profile/me'>
           <Profile value='me' />
         </Route>
@@ -26,14 +25,13 @@ export const useRoutes = (isAuthenticated) => {
           <Publications value='rent' />
         </Route>
         <Route path='/rent/:id' component={ProductPage} />
-        <Redirect to='/' />
+        <Redirect to='/publications' />
       </Switch>
     );
   }
 
   return (
     <Switch>
-      <Route path='/' exact />
       <Route path='/login' component={Login} />
       <Route path='/register' component={Register} />
       <Route path='/restore-password' />
@@ -49,7 +47,7 @@ export const useRoutes = (isAuthenticated) => {
         <Publications value='rent' />
       </Route>
       <Route path='/rent/:id' component={ProductPage} />
-      <Redirect to='/' />
+      <Redirect to='/publications' />
     </Switch>
   );
 };

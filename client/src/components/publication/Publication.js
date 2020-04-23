@@ -24,7 +24,9 @@ const Publication = ({
         <img src={images[1].image} alt='second_image' />
         <img src={images[2].image} alt='third_image' />
         <div className='publication-description'>
-          <h1>{`${rooms}-комн. ${type}, ${area} м2, ${address}`}</h1>
+          <h1>
+            {rooms}-комн. {type}, {area} м<sup>2</sup>,{address}
+          </h1>
           <p>Категория: {type}</p>
           <p>Город: {city}</p>
           <p>

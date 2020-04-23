@@ -15,7 +15,7 @@ const Navbar = (isAuthenticated) => {
   return (
     <Fragment>
       <nav className='navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-info'>
-        <NavLink className='navbar-brand' to='/'>
+        <NavLink className='navbar-brand' to='/publications'>
           Недвижимость
         </NavLink>
 
