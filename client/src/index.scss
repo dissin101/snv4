@@ -16,6 +16,10 @@ body {
         margin-top: 1rem;
         margin-bottom: 2rem;
       }
+
+      .app-container {
+        min-height: 100vh;
+      }
       
       .all-publications{
         display: flex;

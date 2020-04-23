@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useHistory, Link } from "react-router-dom";
-import { ProfileInfo } from "../../components";
+import { ProfileInfo, ProfileSettings } from "../../components";
 import "./profile.scss";
 
 const Profile = (props) => {
@@ -36,6 +36,8 @@ const Profile = (props) => {
   function ProfileTabs(props) {
     if (props.route === "me") {
       return <ProfileInfo value={props.profileInfo} />;
+    } else if (props.route === "settings") {
+      return <ProfileSettings value={props.profileInfo} />;
     }
   }
 

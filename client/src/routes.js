@@ -10,7 +10,9 @@ export const useRoutes = (isAuthenticated) => {
         <Route exact path='/profile/me'>
           <Profile value='me' />
         </Route>
-        <Route exact path='/profile/settings' component={Profile} />
+        <Route exact path='/profile/settings'>
+          <Profile value='settings' />
+        </Route>
         <Route path='/add-publication' />
         <Route exact path='/publications'>
           <Publications value='publications' />

@@ -17,6 +17,12 @@ const ProfileSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  city: {
+    type: String,
+  },
+  phone: {
+    type: Number,
+  },
 });
 
 module.exports = Profile = mongoose.model("profile", ProfileSchema);
