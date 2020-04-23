@@ -51,11 +51,9 @@ class ProductPage extends React.Component {
           <div>
             <div class='container'>
               <h4 className='border-bottom pb-4 mt-1 mb-4'>
-                {`${
-                  publication.rooms
-                }-комн. ${publication.type.toLowerCase()}, площадь ${
-                  publication.area
-                } м2, улица ${publication.address}`}
+                {publication.rooms}-комн. {publication.type.toLowerCase()},
+                площадь {publication.area} м<sup>2</sup>, улица{" "}
+                {publication.address}.
               </h4>
               <Carousel>
                 {publication.images.map((image) => (
@@ -131,7 +129,7 @@ class ProductPage extends React.Component {
                       <p>Заглушка для связи с автором публикации. </p>
                     </TabPanel>
                     <TabPanel>
-                      <p>Заглушка для API карт.</p>
+                      <div id='map' style={{ width: 200, height: 200 }}></div>
                     </TabPanel>
                   </Tabs>
                 </div>
