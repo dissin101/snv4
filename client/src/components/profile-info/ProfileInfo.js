@@ -23,6 +23,14 @@ const ProfileInfo = (props) => {
         </div>
         <div className='row'>
           <div className='col-md-6'>
+            <label>Город</label>
+          </div>
+          <div className='col-md-6'>
+            <p>{profileInfo.city}</p>
+          </div>
+        </div>
+        <div className='row'>
+          <div className='col-md-6'>
             <label>Email</label>
           </div>
           <div className='col-md-6'>
@@ -34,7 +42,7 @@ const ProfileInfo = (props) => {
             <label>Телефон</label>
           </div>
           <div className='col-md-6'>
-            {profileInfo.phone ? profileInfo.phone : <p>Не указан</p>}
+            <p>{profileInfo.phone ? profileInfo.phone : <p>Не указан</p>}</p>
           </div>
         </div>
         <div className='row'>

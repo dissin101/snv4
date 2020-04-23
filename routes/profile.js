@@ -49,7 +49,9 @@ router.get("/me", auth, async (req, res) => {
 // @access Private
 
 router.post("/settings", auth, async (req, res) => {
-  const { name, surname, phone, password } = req.body;
+  const { name, surname, phone, email, city } = req.body;
+
+  console.log(req.body);
 
   // Get user ID from token
   const token = req.header("x-auth-token");
@@ -61,6 +63,8 @@ router.post("/settings", auth, async (req, res) => {
   if (name) profileFields.name = name;
   if (surname) profileFields.surname = surname;
   if (phone) profileFields.phone = phone;
+  if (email) profileFields.email = email;
+  if (city) profileFields.city = city;
   try {
     let profile = await Profile.findOne({ user: decode.userId });
 
