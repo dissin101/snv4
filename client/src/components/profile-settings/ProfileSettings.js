@@ -20,13 +20,12 @@ const ProfileSettings = (props) => {
 
   const changeButtonHadler = async () => {
     try {
-      const data = await request(
+      await request(
         "/profile/settings",
         "POST",
         { ...form },
         { "x-auth-token": usrData.token }
       );
-      console.log({ ...form });
     } catch (error) {}
   };
 
