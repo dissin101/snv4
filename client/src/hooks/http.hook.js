@@ -34,7 +34,8 @@ export const useHttp = () => {
         setError(error.message);
         throw error;
       }
-    }
+    },
+    [] // ???
   );
 
   const clearError = useCallback(() => setError(null), []);

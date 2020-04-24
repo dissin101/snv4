@@ -35,7 +35,7 @@ const Publications = ({ value }) => {
 
   function filterRooms(value) {
     if (roomsFilter == null) return value.rooms;
-    if (roomsFilter == value.rooms) return value.rooms;
+    if (roomsFilter === value.rooms) return value.rooms;
   }
 
   function filterMinPrice(value) {
@@ -68,7 +68,7 @@ const Publications = ({ value }) => {
         price={publication.price}
         images={publication.images}
         rooms={publication.rooms}
-        area={publication.area}
+        //area={publication.area}
         address={publication.address}
       />
     );

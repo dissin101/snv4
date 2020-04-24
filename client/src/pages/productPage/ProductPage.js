@@ -1,7 +1,7 @@
 import React from "react";
 import CurrencyFormat from "react-currency-format";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel, showArrows } from "react-responsive-carousel";
+import { Carousel } from "react-responsive-carousel";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.scss";
 
@@ -57,7 +57,7 @@ class ProductPage extends React.Component {
               <Carousel showArrows='false'>
                 {publication.images.map((image) => (
                   <div>
-                    <img src={image.image} />
+                    <img src={image.image} alt='Publication img' />
                   </div>
                 ))}
                 {/* <p className="legend">Legend 1</p> */}
@@ -127,6 +127,7 @@ class ProductPage extends React.Component {
                     <TabPanel>MAP</TabPanel>
                     <TabPanel>
                       <iframe
+                        title='3D RoomTour'
                         width='100%'
                         height='600'
                         src='https://3dpanorama.spb.ru/3dtur/lss/'
