@@ -1,6 +1,13 @@
 import React from "react";
 import { Switch, Redirect, Route } from "react-router-dom";
-import { Login, Register, Publications, ProductPage, Profile } from "./pages";
+import {
+  Login,
+  Register,
+  Publications,
+  ProductPage,
+  Profile,
+  AddPublication,
+} from "./pages";
 
 export const useRoutes = (isAuthenticated) => {
   if (isAuthenticated) {
@@ -12,7 +19,7 @@ export const useRoutes = (isAuthenticated) => {
         <Route exact path='/profile/settings'>
           <Profile value='settings' />
         </Route>
-        <Route path='/add-publication' />
+        <Route path='/add-publication' component={AddPublication} />
         <Route exact path='/publications'>
           <Publications value='publications' />
         </Route>

@@ -5,6 +5,12 @@
     font-size: 1.6rem;
   }
 
+  .carousel-root {
+    .carousel-status {
+      display: none;
+    }
+  }
+
   tr,
   td,
   h1 {

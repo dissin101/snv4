@@ -60,6 +60,7 @@ const Filter = (params) => {
             <option value='Квартира'>Квартира</option>
             <option value='Дом'>Дом</option>
             <option value='Коммерческая'>Коммерческая</option>
+            <option value='Другое'>Другое</option> {/*!!!!! Доделать */}
           </select>
         </div>
 
@@ -73,6 +74,7 @@ const Filter = (params) => {
             <option value='2'>2-комнатная</option>
             <option value='3'>3-комнатная</option>
             <option value='4'>4-комнатная</option>
+            <option value='5'>5 и более</option> {/*!!!!! Доделать */}
           </select>
         </div>
 

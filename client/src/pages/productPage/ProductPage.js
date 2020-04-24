@@ -1,7 +1,7 @@
 import React from "react";
 import CurrencyFormat from "react-currency-format";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from "react-responsive-carousel";
+import { Carousel, showArrows } from "react-responsive-carousel";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.scss";
 
@@ -54,7 +54,7 @@ class ProductPage extends React.Component {
                 площадь {publication.area} м<sup>2</sup>, улица{" "}
                 {publication.address}.
               </h4>
-              <Carousel>
+              <Carousel showArrows='false'>
                 {publication.images.map((image) => (
                   <div>
                     <img src={image.image} />

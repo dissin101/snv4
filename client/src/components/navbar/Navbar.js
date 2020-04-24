@@ -38,7 +38,7 @@ const Navbar = (isAuthenticated) => {
             </li>
             <li className='nav-item'>
               <NavLink to='/add-publication' className='nav-link'>
-                Подать объявление
+                Опубликовать объявление
               </NavLink>
             </li>
           </ul>
