@@ -4,6 +4,7 @@ import { Filter } from "../../components";
 
 const Publications = ({ value }) => {
   const [publications, setPublications] = useState([]);
+  console.log(publications);
 
   useEffect(() => {
     fetch(`/${value}`)
@@ -51,10 +52,14 @@ const Publications = ({ value }) => {
   const filterPublications = publications
     .filter(filterCity)
     .filter(filterType)
+    .filter(filterMinPrice)
+    .filter(filterMaxPrice)
+    .filter(filterRooms);
+  /*
     .filter(filterRooms)
     .filter(filterMinPrice)
     .filter(filterMaxPrice);
-
+    */
   const showPublication = filterPublications.map((publication) => {
     const publicationCard = (
       <Publication

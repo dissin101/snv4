@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useHttp } from "../../hooks/http.hook";
+import axios from "axios";
 import "./addPublication.scss";
 import CurrencyFormat from "react-currency-format";
 
@@ -18,15 +19,26 @@ const AddPublication = () => {
     type: "",
     rooms: "",
     category: "",
+    images: [{}],
   });
 
   const changeHandler = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value });
   };
 
-  const handleClick = () => {
+  const [selectedFiles, useSelectedFiles] = useState({
+    selectedFiles: null,
+    useSelectedFiles: null,
+  });
+
+  const MultipleFileChangedHandler = (event) => {
+    useSelectedFiles(event.target.files);
+  };
+
+  const handleClick = async () => {
     form.type = rentType;
     form.category = category;
+    form.rooms = roomsCount;
     form.rooms = Number(form.rooms);
     form.dateOfBuild = Number(form.dateOfBuild);
     form.floor = Number(form.floor);
@@ -38,7 +50,57 @@ const AddPublication = () => {
       }
     }
     form.price = Number(form.price);
+
     console.log(form);
+
+    const data = new FormData();
+    console.log(selectedFiles);
+    if (selectedFiles) {
+      for (let i = 0; i < selectedFiles.length; i++) {
+        data.append("galleryImage", selectedFiles[i], selectedFiles[i].name);
+      }
+      for (let prop in form) {
+        data.append(prop, form[prop]);
+      }
+
+      axios
+        .post("/add-publication", data, {
+          headers: {
+            Accept: "application/json",
+            "Accept-Language": "en-US,en;q=0.8",
+            "Content-Type": "multipart/form-data",
+            "x-auth-token": usrData.token,
+          },
+        })
+        .then((response) => {
+          //console.log("res", response);
+          if (200 === response.status) {
+            // If file size is larger than expected.
+            if (response.data.error) {
+              if ("LIMIT_FILE_SIZE" === response.data.error.code) {
+                //Заглушка под уведомление this.ocShowAlert("Max size: 2MB", "red");
+              } else if ("LIMIT_UNEXPECTED_FILE" === response.data.error.code) {
+                //Заглушка под уведомление this.ocShowAlert("Max 4 images allowed", "red");
+              } else {
+                // If not the given ile type
+                // Заглушка под уведомление this.ocShowAlert(response.data.error, "red");
+              }
+            } else {
+              // Success
+              let fileName = response.data;
+              console.log("fileName", fileName);
+              // Заглушка под уведомление this.ocShowAlert("File Uploaded", "#3089cf");
+            }
+          }
+        })
+        .catch((error) => {
+          // If another error
+          //this.ocShowAlert(error, "red");
+        });
+    } else {
+      // if file not selected throw error
+      //this.ocShowAlert("Please upload file", "red");
+    }
   };
 
   const [category, setCategory] = useState("");
@@ -51,7 +113,7 @@ const AddPublication = () => {
     setRentType(event.target.value);
   };
 
-  const [rooms, setRooms] = useState("");
+  const [roomsCount, setRooms] = useState("");
   const roomsHandle = (event) => {
     setRooms(event.target.value);
   };
@@ -87,7 +149,7 @@ const AddPublication = () => {
             </select>
 
             <p>Количество комнат</p>
-            <select onChange={roomsHandle} value={rooms}>
+            <select onChange={roomsHandle} value={roomsCount}>
               <option hidden value=' '>
                 {" "}
               </option>
@@ -95,7 +157,7 @@ const AddPublication = () => {
               <option value='2'>2-комнатная</option>
               <option value='3'>3-комнатная</option>
               <option value='4'>4-комнатная</option>
-              <option value='5'>5 и более</option> {/*!!!!! Доделать */}
+              <option value='5'>5 и более</option>
             </select>
 
             <p>Город</p>
@@ -128,7 +190,6 @@ const AddPublication = () => {
               placeholder='2017'
               id='dateOfBuild'
               name='dateOfBuild'
-              className='form-control'
               value={form.dateOfBuild}
               onChange={changeHandler}
             ></input>
@@ -140,7 +201,6 @@ const AddPublication = () => {
               placeholder='2'
               id='floor'
               name='floor'
-              className='form-control'
               value={form.floor}
               onChange={changeHandler}
             ></input>
@@ -152,7 +212,6 @@ const AddPublication = () => {
               placeholder='2'
               id='floorsInBuilding'
               name='floorsInBuilding'
-              className='form-control'
               value={form.floorsInBuilding}
               onChange={changeHandler}
             ></input>
@@ -169,7 +228,6 @@ const AddPublication = () => {
               placeholder='50'
               id='area'
               name='area'
-              className='form-control'
               value={form.area}
               onChange={changeHandler}
             ></input>
@@ -180,7 +238,6 @@ const AddPublication = () => {
               thousandSeparator={true}
               id='price'
               name='price'
-              className='form-control'
               value={form.price}
               onChange={changeHandler}
             />
@@ -194,7 +251,6 @@ const AddPublication = () => {
               maxLength='1000'
               id='description'
               name='description'
-              className='form-control'
               value={form.description}
               onChange={changeHandler}
             ></textarea>
@@ -210,7 +266,7 @@ const AddPublication = () => {
                 <input
                   type='file'
                   multiple
-                  //onChange={this.multipleFileChangedHandler}
+                  onChange={MultipleFileChangedHandler}
                 />
               </div>
             </div>
