@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useHttp } from "../../hooks/http.hook";
 import axios from "axios";
-import "./addPublication.scss";
 import CurrencyFormat from "react-currency-format";
+import { ToastContainer, toast } from "react-toastify";
+
+import "./addPublication.scss";
 
 const AddPublication = () => {
-  const { loading, request } = useHttp();
   const usrData = JSON.parse(localStorage.getItem("userData"));
   const [form, setForm] = useState({
     city: "",
@@ -50,11 +50,7 @@ const AddPublication = () => {
       }
     }
     form.price = Number(form.price);
-
-    console.log(form);
-
     const data = new FormData();
-    console.log(selectedFiles);
     if (selectedFiles) {
       for (let i = 0; i < selectedFiles.length; i++) {
         data.append("galleryImage", selectedFiles[i], selectedFiles[i].name);
@@ -79,26 +75,34 @@ const AddPublication = () => {
             if (response.data.error) {
               if ("LIMIT_FILE_SIZE" === response.data.error.code) {
                 //Заглушка под уведомление this.ocShowAlert("Max size: 2MB", "red");
+                toast.info(
+                  "Максимальный размер файла для загрузки не должен привышать 4мб."
+                );
               } else if ("LIMIT_UNEXPECTED_FILE" === response.data.error.code) {
                 //Заглушка под уведомление this.ocShowAlert("Max 4 images allowed", "red");
+                toast.info(
+                  "Максимальное количество доступных фотографий для загрузки: 10"
+                );
               } else {
-                // If not the given ile type
+                // If not the given file type
                 // Заглушка под уведомление this.ocShowAlert(response.data.error, "red");
+                toast.error("Вы пытаетесь загрузить файл неверного формата");
               }
             } else {
               // Success
               let fileName = response.data;
               console.log("fileName", fileName);
-              // Заглушка под уведомление this.ocShowAlert("File Uploaded", "#3089cf");
+              toast.success("Объявление опубликовано");
             }
           }
         })
         .catch((error) => {
           // If another error
-          //this.ocShowAlert(error, "red");
+          toast.error("Произошла ошибка:", error);
         });
     } else {
       // if file not selected throw error
+      toast.error("Пожалуйста, загрузите фотографии");
       //this.ocShowAlert("Please upload file", "red");
     }
   };
@@ -121,6 +125,18 @@ const AddPublication = () => {
   return (
     <div className='border add-publication'>
       <h4 className='border-bottom pb-4 mt-1 mb-4'>Опубликовать объявление</h4>
+
+      <ToastContainer
+        position='top-right'
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnVisibilityChange
+        draggable={false}
+        pauseOnHover
+      />
 
       <div className='add-pubcliation-params-container'>
         <div className='half-wrapper'>
