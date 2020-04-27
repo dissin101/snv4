@@ -11,7 +11,7 @@ const Profile = (props) => {
   const auth = useContext(AuthContext);
 
   useEffect(() => {
-    fetch("/profile/me", {
+    fetch("/api/profile/me", {
       method: "GET",
       headers: {
         "x-auth-token": usrData.token,
