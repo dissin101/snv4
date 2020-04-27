@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
-// Connect DB
+// Connect DataBase
 
 connectDB();
 
