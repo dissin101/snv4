@@ -5,11 +5,15 @@ import { Filter } from "../../components";
 const Publications = ({ value }) => {
   const [publications, setPublications] = useState([]);
 
-  fetch(`/${value}`)
-    .then((response) => response.json())
-    .then((data) => {
-      setPublications(data);
-    });
+  /*
+  useEffect(() => {
+    fetch(`/${value}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setPublications(data);
+      });
+  }, [value, setPublications]);
+*/
 
   const [cityFilter, setCityFilter] = useState("");
   const [minPriceFilter, setMinPriceFilter] = useState(null);
@@ -52,7 +56,6 @@ const Publications = ({ value }) => {
     .filter(filterMinPrice)
     .filter(filterMaxPrice)
     .filter(filterRooms);
-
   const showPublication = filterPublications.map((publication) => {
     const publicationCard = (
       <Publication
