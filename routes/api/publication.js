@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { check, validationResult } = require("express-validator");
+<<<<<<< HEAD:routes/publication.js
 const auth = require("../middleware/auth");
 const aws = require("aws-sdk");
 const multerS3 = require("multer-s3");
@@ -8,9 +9,12 @@ const multer = require("multer");
 const path = require("path");
 const jwtDecode = require("jwt-decode");
 const config = require("config");
+=======
+const auth = require("../../middleware/auth");
+>>>>>>> 6ee2403e7b46b973582a217aea64016c57a8826e:routes/api/publication.js
 
-const Publication = require("../models/Publication");
-const User = require("../models/User");
+const Publication = require("../../models/Publication");
+const User = require("../../models/User");
 
 // PROFILE IMAGE STORING STARTS
 const s3 = new aws.S3({

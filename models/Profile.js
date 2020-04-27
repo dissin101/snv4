@@ -1,6 +1,23 @@
 const mongoose = require("mongoose");
 
 const ProfileSchema = new mongoose.Schema({
+<<<<<<< HEAD
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "user",
+  },
+  city: {
+    type: String,
+  },
+  publications: [
+    {
+      publication: {
+        type: String,
+      },
+    },
+  ],
+=======
+>>>>>>> b5040443
   name: {
     type: String,
     require: true,
@@ -9,6 +26,10 @@ const ProfileSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
+<<<<<<< HEAD
+  avatar: {
+    type: String,
+=======
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
@@ -16,6 +37,7 @@ const ProfileSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
+>>>>>>> b5040443
   },
   city: {
     type: String,

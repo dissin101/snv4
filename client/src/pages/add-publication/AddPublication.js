@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import CurrencyFormat from "react-currency-format";
 import { ToastContainer, toast } from "react-toastify";
-
+//
 import "./addPublication.scss";
 
 const AddPublication = () => {

@@ -14,6 +14,7 @@ const jwtDecode = require("jwt-decode");
 
 router.get("/me", auth, async (req, res) => {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   // Get user ID from token
   const token = req.header("x-auth-token");
@@ -56,6 +57,8 @@ router.post("/settings", auth, async (req, res) => {
   console.log(req.body);
 
 >>>>>>> test-branch
+=======
+>>>>>>> 6ee2403e7b46b973582a217aea64016c57a8826e
   // Get user ID from token
   const token = req.header("x-auth-token");
   const decode = jwtDecode(token);
