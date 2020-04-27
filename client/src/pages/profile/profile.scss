@@ -30,13 +30,11 @@
 }
 .profile-head h5 {
   color: #333;
-  margin-left: 5rem;
 }
 .profile-head h6 {
   color: #0062cc;
 }
 .add-container {
-  margin-left: 5rem;
   height: 120px;
   padding: 1rem;
 }
@@ -67,13 +65,13 @@
 .profile-work p {
   font-size: 1.2rem;
   color: #818182;
-  font-weight: 600;
+  font-weight: 300;
   margin-top: 10%;
 }
 .profile-work a {
   text-decoration: none;
-  color: #495057;
-  font-weight: 600;
+  color: hsl(210, 9%, 31%);
+  font-weight: 300;
   font-size: 1rem;
   line-height: 2rem;
 }
@@ -81,9 +79,22 @@
   list-style: none;
 }
 .profile-tab label {
-  font-weight: 600;
+  font-weight: 300;
 }
 .profile-tab p {
-  font-weight: 600;
+  font-weight: 300;
   color: #0062cc;
+}
+
+.profile-tab input {
+  border: none;
+  outline: none;
+  padding: 2px 5px;
+  margin: 5px 0;
+  font-weight: 300;
+  color: #0062cc;
+}
+
+.profile-tab button {
+  margin-top: 20px;
 }

@@ -1,0 +1,77 @@
+.add-publication {
+  margin-top: 3rem;
+  padding: 0 2rem;
+
+  h4 {
+    margin-top: 1rem;
+    padding: 2rem 0;
+  }
+
+  .add-pubcliation-params-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 4rem;
+
+    .half-wrapper {
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      div {
+        width: 420px;
+        margin: 0;
+
+        p {
+          font-size: 1.2rem;
+          font-weight: 300;
+          margin: 0.5rem 0;
+          padding: 0;
+        }
+
+        select,
+        option,
+        input,
+        textarea {
+          width: 100%;
+          padding: 5px;
+          outline: none;
+          font-size: 1rem;
+          font-weight: 200;
+        }
+
+        textarea {
+          height: 200px;
+          max-height: 200px;
+          min-height: 200px;
+        }
+
+        .input-description {
+          width: 100%;
+          height: 200px;
+        }
+
+        .upload-images-container {
+          margin: 0;
+
+          div {
+            margin: 0;
+
+            span {
+              font-size: 0.9rem;
+              font-weight: 300;
+            }
+
+            input {
+              margin: 0.5rem 0;
+              padding: 0;
+            }
+          }
+        }
+
+        .btn {
+          margin-top: 2.5rem;
+        }
+      }
+    }
+  }
+}

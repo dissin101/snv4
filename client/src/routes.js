@@ -1,14 +1,25 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Switch, Redirect, Route } from "react-router-dom";
-import { Login, Register, Publications, ProductPage, Profile } from "./pages";
+import {
+  Login,
+  Register,
+  Publications,
+  ProductPage,
+  Profile,
+  AddPublication,
+} from "./pages";
 
 export const useRoutes = (isAuthenticated) => {
   if (isAuthenticated) {
     return (
       <Switch>
-        <Route path='/' exact />
-        <Route exact path='/profile/me' component={Profile} />
-        <Route path='/add-publication' />
+        <Route exact path='/profile/me'>
+          <Profile value='me' />
+        </Route>
+        <Route exact path='/profile/settings'>
+          <Profile value='settings' />
+        </Route>
+        <Route path='/add-publication' component={AddPublication} />
         <Route exact path='/publications'>
           <Publications value='publications' />
         </Route>
@@ -21,14 +32,13 @@ export const useRoutes = (isAuthenticated) => {
           <Publications value='rent' />
         </Route>
         <Route path='/rent/:id' component={ProductPage} />
-        <Redirect to='/' />
+        <Redirect to='/publications' />
       </Switch>
     );
   }
 
   return (
     <Switch>
-      <Route path='/' exact />
       <Route path='/login' component={Login} />
       <Route path='/register' component={Register} />
       <Route path='/restore-password' />
@@ -44,7 +54,7 @@ export const useRoutes = (isAuthenticated) => {
         <Publications value='rent' />
       </Route>
       <Route path='/rent/:id' component={ProductPage} />
-      <Redirect to='/' />
+      <Redirect to='/publications' />
     </Switch>
   );
 };

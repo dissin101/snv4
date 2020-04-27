@@ -17,14 +17,17 @@ const Publication = ({
   address,
 }) => {
   const { url } = useRouteMatch();
+
   return (
     <div className='publication-wrapper card rounded'>
       <div className='pictures-wrapper'>
         <img src={images[0].image} alt='first_image' />
         <img src={images[1].image} alt='second_image' />
-        <img src={images[2].image} alt='third_image' />
+        <img src={images[2].image} alt='second_image' />
         <div className='publication-description'>
-          <h1>{`${rooms}-комн. ${type}, ${area} м2, ${address}`}</h1>
+          <h1>
+            {rooms}-комн. {type.toLowerCase()}, {area} м<sup>2</sup>, {address}
+          </h1>
           <p>Категория: {type}</p>
           <p>Город: {city}</p>
           <p>

@@ -46,31 +46,22 @@ const Footer = () => (
           <h5 className='headin5_amrc col_white_amrc pt2'>Полезные ссылки</h5>
           <ul className='footer_ul_amrc'>
             <li>
-              <a href='#'>Помощь и Обратная связь</a>
+              <a href='/?'>Помощь и Обратная связь</a>
             </li>
             <li>
-              <a href='#'>Реклама на сайте</a>
+              <a href='/?'>Реклама на сайте</a>
             </li>
             <li>
-              <a href='#'>Сотрудничество</a>
+              <a href='/?'>Сотрудничество</a>
             </li>
             <li>
-              <a href='#'>Условия использования</a>
+              <a href='/?'>Условия использования</a>
             </li>
             <li>
-              <a href='#'>Как продавать и покупать?</a>
+              <a href='/?'>Как продавать и покупать?</a>
             </li>
           </ul>
         </div>
-
-        {/* <div className=" col-sm-4 col-md  col-12 col">
-                <h5 className="headin5_amrc col_white_amrc pt2">Follow us</h5>
-                <ul className="footer_ul2_amrc">
-                    <li><a href="#"><i className="fab fa-twitter fleft padding-right"></i> </a><p>Lorem Ipsum is simply dummy text of the printing...<a href="#">https://www.lipsum.com/</a></p></li>
-                    <li><a href="#"><i className="fab fa-twitter fleft padding-right"></i> </a><p>Lorem Ipsum is simply dummy text of the printing...<a href="#">https://www.lipsum.com/</a></p></li>
-                    <li><a href="#"><i className="fab fa-twitter fleft padding-right"></i> </a><p>Lorem Ipsum is simply dummy text of the printing...<a href="#">https://www.lipsum.com/</a></p></li>
-                </ul>
-            </div> */}
       </div>
     </div>
 

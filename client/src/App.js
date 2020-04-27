@@ -16,7 +16,7 @@ function App() {
     >
       <Router>
         <Navbar value={{ isAuthenticated }} />
-        <div className='container'>{routes}</div>
+        <div className='container app-container'>{routes}</div>
         <Footer value={{ isAuthenticated }} />
       </Router>
     </AuthContext.Provider>

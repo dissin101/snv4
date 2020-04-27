@@ -1,4 +1,7 @@
 {
   "mongoURI": "mongodb+srv://Kirill:11072005qwe@cluster-u140r.mongodb.net/rent-app?retryWrites=true&w=majority",
-  "jwtSecret": "dss101rentpp"
+  "jwtSecret": "dss101rentpp",
+  "accessKeyId": "AKIA37JG73P3WQBRVK4Q",
+  "secretAccessKey": "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",
+  "Bucket": "keurentapp"
 }

@@ -1,7 +1,7 @@
 import React, { Fragment, useContext } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-
+//
 const Navbar = (isAuthenticated) => {
   const isAuth = isAuthenticated.value.isAuthenticated;
   const history = useHistory();
@@ -15,7 +15,7 @@ const Navbar = (isAuthenticated) => {
   return (
     <Fragment>
       <nav className='navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-info'>
-        <NavLink className='navbar-brand' to='/'>
+        <NavLink className='navbar-brand' to='/publications'>
           Недвижимость
         </NavLink>
 
@@ -38,7 +38,7 @@ const Navbar = (isAuthenticated) => {
             </li>
             <li className='nav-item'>
               <NavLink to='/add-publication' className='nav-link'>
-                Подать объявление
+                Опубликовать объявление
               </NavLink>
             </li>
           </ul>
