@@ -3,19 +3,11 @@ const mongoose = require("mongoose");
 const PublicationSchema = new mongoose.Schema({
   author: {
     type: mongoose.Schema.Types.ObjectId,
-<<<<<<< HEAD
     ref: "users",
   },
   category: {
     type: String,
     //required: true
-=======
-    ref: "user",
-  },
-  category: {
-    type: String,
-    required: true,
->>>>>>> 6ee2403e7b46b973582a217aea64016c57a8826e
   },
   type: {
     type: String,

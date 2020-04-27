@@ -18,6 +18,9 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  avatar: {
+    type: String,
+  },
   date: {
     type: Date,
     default: Date.now,
@@ -25,6 +28,13 @@ const UserSchema = new mongoose.Schema({
   city: {
     type: String,
   },
+  publications: [
+    {
+      publication: {
+        type: String,
+      },
+    },
+  ],
 });
 
-module.exports = User = mongoose.model("user", UserSchema);
+module.exports = User = mongoose.model("users", UserSchema);
