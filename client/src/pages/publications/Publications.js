@@ -5,7 +5,6 @@ import { Filter } from "../../components";
 const Publications = ({ value }) => {
   const [publications, setPublications] = useState([]);
 
-  /*
   useEffect(() => {
     fetch(`/${value}`)
       .then((response) => response.json())
@@ -13,7 +12,6 @@ const Publications = ({ value }) => {
         setPublications(data);
       });
   }, [value, setPublications]);
-*/
 
   const [cityFilter, setCityFilter] = useState("");
   const [minPriceFilter, setMinPriceFilter] = useState(null);
