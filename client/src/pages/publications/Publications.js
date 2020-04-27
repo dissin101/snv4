@@ -11,7 +11,7 @@ const Publications = ({ value }) => {
       .then((data) => {
         setPublications(data);
       });
-  }, [value, setPublications]);
+  });
 
   const [cityFilter, setCityFilter] = useState("");
   const [minPriceFilter, setMinPriceFilter] = useState(null);
@@ -54,11 +54,7 @@ const Publications = ({ value }) => {
     .filter(filterMinPrice)
     .filter(filterMaxPrice)
     .filter(filterRooms);
-  /*
-    .filter(filterRooms)
-    .filter(filterMinPrice)
-    .filter(filterMaxPrice);
-    */
+
   const showPublication = filterPublications.map((publication) => {
     const publicationCard = (
       <Publication
