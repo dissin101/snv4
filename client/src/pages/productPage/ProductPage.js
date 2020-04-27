@@ -19,7 +19,7 @@ class ProductPage extends React.Component {
 
   componentDidMount() {
     const url = this.props.match.url;
-    fetch(`${url}`)
+    fetch(`/api/${url}`)
       .then((res) => res.json())
       .then(
         (result) => {
