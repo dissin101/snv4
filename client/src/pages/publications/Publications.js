@@ -5,13 +5,11 @@ import { Filter } from "../../components";
 const Publications = ({ value }) => {
   const [publications, setPublications] = useState([]);
 
-  useEffect(() => {
-    fetch(`/${value}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setPublications(data);
-      });
-  });
+  fetch(`/${value}`)
+    .then((response) => response.json())
+    .then((data) => {
+      setPublications(data);
+    });
 
   const [cityFilter, setCityFilter] = useState("");
   const [minPriceFilter, setMinPriceFilter] = useState(null);
