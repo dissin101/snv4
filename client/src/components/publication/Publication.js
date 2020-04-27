@@ -17,7 +17,6 @@ const Publication = ({
   address,
 }) => {
   const { url } = useRouteMatch();
-  console.log("IMAGE2", images[2]);
 
   return (
     <div className='publication-wrapper card rounded'>

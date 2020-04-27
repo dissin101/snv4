@@ -7,15 +7,16 @@ const multerS3 = require("multer-s3");
 const multer = require("multer");
 const path = require("path");
 const jwtDecode = require("jwt-decode");
+const config = require("config");
 
 const Publication = require("../models/Publication");
 const User = require("../models/User");
 
 // PROFILE IMAGE STORING STARTS
 const s3 = new aws.S3({
-  accessKeyId: "AKIA37JG73P35DVVN4LP",
-  secretAccessKey: "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",
-  Bucket: "keurentapp",
+  accessKeyId: config.get("accessKeyId"),
+  secretAccessKey: config.get("secretAccessKey"),
+  Bucket: config.get("Bucket"),
 });
 
 function checkFileType(file, cb) {
