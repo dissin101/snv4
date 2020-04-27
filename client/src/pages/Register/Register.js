@@ -29,7 +29,7 @@ const Register = () => {
 
   const registerHandler = async () => {
     try {
-      const data = await request("/user/register", "POST", { ...form });
+      const data = await request("/api/user/register", "POST", { ...form });
       auth.login(data.token, data.userId);
     } catch (error) {}
   };

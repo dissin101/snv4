@@ -159,7 +159,7 @@ router.post("/add-publication", auth, async (req, res) => {
   });
 });
 
-// @route  GET /publications/
+// @route  GET api/publications/
 // @desc   Get all publications
 // @access Public
 
@@ -168,7 +168,7 @@ router.get("/publications", async (req, res) => {
   res.json(publications);
 });
 
-// @route  GET /publications/:id
+// @route  GET api/publications/:id
 // @desc   Get publication by ID
 // @access Public
 
@@ -182,7 +182,7 @@ router.get("/publications/:id", async (req, res) => {
   } catch (error) {}
 });
 
-// @route  GET /publications/sale
+// @route  GET api/publications/sale
 // @desc   Get Sale publications
 // @access Public
 
@@ -191,7 +191,7 @@ router.get("/sale", async (req, res) => {
   res.json(publications);
 });
 
-// @route  GET /sale/:id
+// @route  GET api/sale/:id
 // @desc   Get publication by ID
 // @access Public
 
@@ -205,7 +205,7 @@ router.get("/sale/:id", async (req, res) => {
   } catch (error) {}
 });
 
-// @route  GET /rent
+// @route  GET api/rent
 // @desc   Get Rent publications
 // @access Public
 
@@ -214,7 +214,7 @@ router.get("/rent", async (req, res) => {
   res.json(publications);
 });
 
-// @route  GET /rent/:id
+// @route  GET api/rent/:id
 // @desc   Get rent publications by ID
 // @access Public
 

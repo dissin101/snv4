@@ -8,7 +8,7 @@ const auth = require("../middleware/auth");
 const jwt = require("jsonwebtoken");
 const jwtDecode = require("jwt-decode");
 
-// @route  GET /profile/me
+// @route  GET api/profile/me
 // @desc   Create and GET current users profile
 // @access Private
 
@@ -44,7 +44,7 @@ router.get("/me", auth, async (req, res) => {
   }
 });
 
-// @route  GET /profile/settings
+// @route  GET api/profile/settings
 // @desc   Change user profile
 // @access Private
 

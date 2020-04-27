@@ -6,7 +6,7 @@ const Publications = ({ value }) => {
   const [publications, setPublications] = useState([]);
 
   useEffect(() => {
-    fetch(`/${value}`)
+    fetch(`/api/${value}`)
       .then((response) => response.json())
       .then((data) => {
         setPublications(data);

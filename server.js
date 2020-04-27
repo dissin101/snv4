@@ -18,10 +18,10 @@ app.use(express.json({ extended: true }));
 
 // Routes
 
-app.use("/auth", require("./routes/auth"));
-app.use("/user", require("./routes/user"));
-app.use("/profile", require("./routes/profile"));
-app.use("/", require("./routes/publication"));
+app.use("/api/auth", require("./routes/auth"));
+app.use("/api/user", require("./routes/user"));
+app.use("/api/profile", require("./routes/profile"));
+app.use("/api", require("./routes/publication"));
 
 // Serve static assets in production
 
