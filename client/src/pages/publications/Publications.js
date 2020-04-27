@@ -3,25 +3,30 @@ import { Publication } from "../../components";
 import { Filter } from "../../components";
 
 const Publications = ({ value }) => {
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [publications, setPublications] = useState([]);
 
   useEffect(() => {
     fetch(`/api/${value}`)
       .then((response) => response.json())
-      .then((data) => {
-        setPublications(data);
-      });
-  }, [value, setPublications]);
+      .then(
+        (data) => {
+          setIsLoaded(true);
+          setPublications(data);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      );
+  }, []);
 
   const [cityFilter, setCityFilter] = useState("");
   const [minPriceFilter, setMinPriceFilter] = useState(null);
   const [maxPriceFilter, setMaxPriceFilter] = useState(null);
   const [rentTypeFilter, setRentTypeFilter] = useState("");
   const [roomsFilter, setRoomsFilter] = useState(null);
-
-  if (publications.length === 0) {
-    return <div className='mt-3'>Загрузка...</div>;
-  }
 
   function filterCity(value) {
     if (cityFilter === "") return value.city;
@@ -67,7 +72,7 @@ const Publications = ({ value }) => {
         price={publication.price}
         images={publication.images}
         rooms={publication.rooms}
-        //area={publication.area}
+        area={publication.area}
         address={publication.address}
       />
     );
@@ -75,18 +80,26 @@ const Publications = ({ value }) => {
     return publicationCard;
   });
 
-  return (
-    <div className='publications-wrapper'>
-      <Filter
-        setCityFilter={setCityFilter}
-        setMinPriceFilter={setMinPriceFilter}
-        setMaxPriceFilter={setMaxPriceFilter}
-        setRentTypeFilter={setRentTypeFilter}
-        setRoomsFilter={setRoomsFilter}
-      />
-      <div className='all-publications'>{showPublication}</div>
-    </div>
-  );
+  if (error) {
+    return <div className='mt-3'>Ошибка: {error.message}</div>;
+  } else if (isLoaded == false) {
+    return <div className='mt-3'>Загрузка...</div>;
+  } else if (publications.length == 0) {
+    return <div className='mt-3'>Публикаций пока нет.</div>;
+  } else {
+    return (
+      <div className='publications-wrapper'>
+        <Filter
+          setCityFilter={setCityFilter}
+          setMinPriceFilter={setMinPriceFilter}
+          setMaxPriceFilter={setMaxPriceFilter}
+          setRentTypeFilter={setRentTypeFilter}
+          setRoomsFilter={setRoomsFilter}
+        />
+        <div className='all-publications'>{showPublication}</div>
+      </div>
+    );
+  }
 };
 
 export default Publications;
