@@ -20,7 +20,7 @@ const Publications = ({ value }) => {
           setError(error);
         }
       );
-  }, []);
+  }, [value, setPublications]);
 
   const [cityFilter, setCityFilter] = useState("");
   const [minPriceFilter, setMinPriceFilter] = useState(null);
@@ -61,20 +61,7 @@ const Publications = ({ value }) => {
     .filter(filterRooms);
   const showPublication = filterPublications.map((publication) => {
     const publicationCard = (
-      <Publication
-        key={publication._id}
-        id={publication._id}
-        type={publication.type}
-        city={publication.city}
-        floor={publication.floor}
-        floorsInBuilding={publication.floorsInBuilding}
-        area={publication.area}
-        price={publication.price}
-        images={publication.images}
-        rooms={publication.rooms}
-        area={publication.area}
-        address={publication.address}
-      />
+      <Publication params={publication} key={publication._id} />
     );
 
     return publicationCard;
@@ -82,11 +69,13 @@ const Publications = ({ value }) => {
 
   if (error) {
     return <div className='mt-3'>Ошибка: {error.message}</div>;
-  } else if (isLoaded == false) {
+  } else if (isLoaded === false) {
     return <div className='mt-3'>Загрузка...</div>;
-  } else if (publications.length == 0) {
-    return <div className='mt-3'>Публикаций пока нет.</div>;
   } else {
+    if (publications.length === 0) {
+      return <div className='mt-3'>Публикаций пока нет.</div>;
+    }
+
     return (
       <div className='publications-wrapper'>
         <Filter
