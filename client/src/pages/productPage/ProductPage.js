@@ -25,6 +25,7 @@ const ProductPage = (props) => {
     price: "",
     rooms: "",
     type: "",
+    msg: "",
   });
   console.log(publication);
 
@@ -48,6 +49,10 @@ const ProductPage = (props) => {
   } else if (isLoaded === false) {
     return <div className='mt-3'>Загрузка...</div>;
   } else {
+    if (publication.msg === "Publication not found") {
+      return <div className='mt-3'>Публикация не найдена.</div>;
+    }
+
     return (
       <div className='product-card border rounded mt-5 mb-5 pt-4 pr-3 pl-3 pb-4'>
         <div key={publication.id}>

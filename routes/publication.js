@@ -175,7 +175,8 @@ router.get("/publications", async (req, res) => {
 router.get("/publications/:id", async (req, res) => {
   try {
     const publicationId = await Publication.findById(req.params.id);
-    if (!publicationId) {
+    console.log(publicationId);
+    if (publicationId == null) {
       return res.status(404).json({ msg: "Publication not found" });
     }
     res.json(publicationId);
@@ -198,7 +199,7 @@ router.get("/sale", async (req, res) => {
 router.get("/sale/:id", async (req, res) => {
   try {
     const publicationId = await Publication.findById(req.params.id);
-    if (!publicationId) {
+    if (publicationId == null) {
       return res.status(404).json({ msg: "Publication not found" });
     }
     res.json(publicationId);
@@ -221,7 +222,7 @@ router.get("/rent", async (req, res) => {
 router.get("/rent/:id", async (req, res) => {
   try {
     const publicationId = await Publication.findById(req.params.id);
-    if (!publicationId) {
+    if (publicationId == null) {
       return res.status(404).json({ msg: "Publication not found" });
     }
     res.json(publicationId);
