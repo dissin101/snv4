@@ -11,46 +11,29 @@
     }
   }
 
-  tr,
-  td,
-  h1 {
-    cursor: default;
-  }
-  #sailorTableArea {
-    max-height: 300px;
-    overflow-x: auto;
-    overflow-y: auto;
-  }
-  #sailorTable {
-    white-space: normal;
-  }
-
-  thead {
-    th {
-      font-size: 1rem;
-      font-weight: 500;
-      text-align: start;
-      padding: 15px 10px;
-    }
-  }
-
-  tbody {
-    display: block;
-    overflow: auto;
-
-    th {
-      font-size: 0.9rem;
-      font-weight: 100;
-      text-align: start;
-    }
-  }
-  thead,
-  tbody tr {
-    display: table;
+  .responsive-table {
+    display: flex;
+    flex-wrap: wrap;
     width: 100%;
-    table-layout: fixed;
-  }
 
+    .t-head {
+      font-weight: 500;
+    }
+
+    .t-body {
+      font-weight: 300;
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    .table-block {
+      width: 128px;
+      padding: 0.75rem 2rem 0.25rem 0.75rem;
+    }
+
+    .date-of-build {
+      width: 158px;
+    }
+  }
   .row {
     display: flex;
     flex-direction: row;
@@ -62,6 +45,67 @@
     margin: 0 !important;
     h1 {
       font-size: 1.4rem;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .product-card {
+    .responsive-table {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+
+      .table-wrapper:nth-child(5) {
+        border-top: none !important;
+        border-left: 1px solid #dee2e6 !important;
+      }
+
+      .table-wrapper:nth-child(6),
+      .table-wrapper:nth-child(7),
+      .table-wrapper:nth-child(8),
+      .table-wrapper:nth-child(9) {
+        border-top: none !important;
+      }
+
+      .table-block {
+        width: 220px;
+        padding: 0.75rem 2rem 0.25rem 0.75rem;
+      }
+
+      .date-of-build {
+        width: 220px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .product-card {
+    .responsive-table {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      justify-content: center;
+
+      .table-wrapper:nth-child(3),
+      .table-wrapper:nth-child(7) {
+        border-left: 1px solid #dee2e6 !important;
+      }
+
+      .table-wrapper:nth-child(3),
+      .table-wrapper:nth-child(4) {
+        border-top: none !important;
+      }
+
+      .table-block {
+        width: 220px;
+        padding: 0.75rem 2rem 0.25rem 0.75rem;
+      }
+
+      .date-of-build {
+        width: 220px;
+      }
     }
   }
 }

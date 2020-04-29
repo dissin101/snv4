@@ -70,50 +70,88 @@ const ProductPage = (props) => {
               ))}
             </Carousel>
             <div className='row'>
-              <div class='table-responsive' id='sailorTableArea'>
-                <table
-                  id='sailorTable'
-                  class='table table-striped table-bordered'
-                  width='100%'
-                >
-                  <thead>
-                    <tr>
-                      <th>Категория</th>
-                      <th>Город</th>
-                      <th>Тип</th>
-                      <th>Число комнат</th>
-                      <th>Этаж</th>
-                      <th>Год постройки</th>
-                      <th>Площадь</th>
-                      <th>Стоимость</th>
-                    </tr>
-                  </thead>
+              <div className='responsive-table mb-4'>
+                <div className='border table-wrapper'>
+                  <div className='table-block t-head'>
+                    <p>Категория</p>
+                  </div>
+                  <div className='table-block t-body'>
+                    <p>{publication.category}</p>
+                  </div>
+                </div>
 
-                  <tbody>
-                    <tr>
-                      <td>{publication.category}</td>
-                      <td>{publication.city}</td>
-                      <td>{publication.type}</td>
-                      <td>{publication.rooms}</td>
-                      <td>
-                        {publication.floor}{" "}
-                        {publication.floorsInBuilding > 1 && (
-                          <span>/ {publication.floorsInBuilding}</span>
-                        )}
-                      </td>
-                      <td>{publication.dateOfBuild}</td>
-                      <td>{publication.area}</td>
-                      <td>
-                        <CurrencyFormat
-                          value={publication.price}
-                          displayType={"text"}
-                          thousandSeparator={true}
-                        />
-                        &#8376;
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                <div className='border-top border-bottom border-right table-wrapper'>
+                  <div className='table-block t-head'>
+                    <p>Город</p>
+                  </div>
+                  <div className='table-block t-body'>
+                    <p>{publication.city}</p>
+                  </div>
+                </div>
+
+                <div className='border-top border-bottom border-right table-wrapper'>
+                  <div className='table-block t-head'>
+                    <p>Тип</p>
+                  </div>
+                  <div className='table-block t-body'>
+                    <p>{publication.type}</p>
+                  </div>
+                </div>
+
+                <div className='border-top border-bottom border-right table-wrapper'>
+                  <div className='table-block t-head'>
+                    <p>Комнаты</p>
+                  </div>
+                  <div className='table-block t-body'>
+                    <p>{publication.rooms}</p>
+                  </div>
+                </div>
+
+                <div className='border-top border-bottom border-right table-wrapper'>
+                  <div className='table-block t-head'>
+                    <p>Этаж</p>
+                  </div>
+                  <div className='table-block t-body'>
+                    {publication.floor}{" "}
+                    {publication.floorsInBuilding > 1 && (
+                      <span>/ {publication.floorsInBuilding}</span>
+                    )}
+                    <p></p>
+                  </div>
+                </div>
+
+                <div className='border-top border-bottom border-right table-wrapper'>
+                  <div className='table-block t-head date-of-build'>
+                    <p>Год постройки</p>
+                  </div>
+                  <div className='table-block t-body date-of-build'>
+                    <p>{publication.dateOfBuild}</p>
+                  </div>
+                </div>
+
+                <div className='border-top border-bottom border-right table-wrapper'>
+                  <div className='table-block t-head'>
+                    <p>Площадь</p>
+                  </div>
+                  <div className='table-block t-body'>
+                    <p>{publication.area}</p>
+                  </div>
+                </div>
+
+                <div className='border-top border-bottom border-right table-wrapper'>
+                  <div className='table-block t-head'>
+                    <p>Цена</p>
+                  </div>
+                  <div className='table-block t-body'>
+                    <CurrencyFormat
+                      value={publication.price}
+                      displayType={"text"}
+                      thousandSeparator={true}
+                    />
+                    &#8376;
+                    <p></p>
+                  </div>
+                </div>
               </div>
 
               <div className='product-description ml-4'>
