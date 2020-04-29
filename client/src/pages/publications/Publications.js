@@ -26,7 +26,7 @@ const Publications = ({ value }) => {
   const [minPriceFilter, setMinPriceFilter] = useState(null);
   const [maxPriceFilter, setMaxPriceFilter] = useState(null);
   const [rentTypeFilter, setRentTypeFilter] = useState("");
-  const [roomsFilter, setRoomsFilter] = useState(null);
+  const [roomsFilter, setRoomsFilter] = useState("");
 
   function filterCity(value) {
     if (cityFilter === "") return value.city;
@@ -39,8 +39,10 @@ const Publications = ({ value }) => {
   }
 
   function filterRooms(value) {
-    if (roomsFilter == null) return value.rooms;
-    if (roomsFilter === value.rooms) return value.rooms;
+    console.log("1", typeof roomsFilter);
+    console.log(typeof value.rooms.toString());
+    if (roomsFilter === "") return value.rooms;
+    if (roomsFilter === value.rooms.toString()) return value.rooms;
   }
 
   function filterMinPrice(value) {
@@ -57,8 +59,8 @@ const Publications = ({ value }) => {
     .filter(filterCity)
     .filter(filterType)
     .filter(filterMinPrice)
-    .filter(filterMaxPrice)
-    .filter(filterRooms);
+    .filter(filterMaxPrice);
+  //.filter(filterRooms);
   const showPublication = filterPublications.map((publication) => {
     const publicationCard = (
       <Publication params={publication} key={publication._id} />

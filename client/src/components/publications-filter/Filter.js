@@ -20,7 +20,7 @@ const Filter = (params) => {
   const handleClick = () => {
     params.setCityFilter(form.city);
     params.setRentTypeFilter(rentType);
-    if (rooms === "") {
+    if (rooms == "") {
       params.setRoomsFilter(null);
     } else {
       params.setRoomsFilter(rooms);
@@ -36,10 +36,25 @@ const Filter = (params) => {
       params.setMaxPriceFilter(form.maxPrice);
     }
   };
+
+  const clearHandleClick = () => {
+    if (form.city !== "") {
+      form.city = "";
+      params.setCityFilter(form.city);
+    }
+    if (rentType !== "") {
+      setRentType("");
+      params.setRentTypeFilter("");
+    }
+    if (rooms !== "") {
+      setRooms("");
+      params.setRoomsFilter("");
+    }
+  };
   return (
     <div className='container filter navbar-dark bg-dark'>
-      <div className='row'>
-        <div className='col col-sm-3 city-filter'>
+      <div className='city-type-wrapper'>
+        <div className='city-filter mr-2'>
           <p>Город</p>
           <input
             type='text'
@@ -51,7 +66,7 @@ const Filter = (params) => {
           />
         </div>
 
-        <div className='col'>
+        <div className='type-filter mr-2'>
           <p>Тип недвижимости</p>
           <select onChange={rentHandle} value={rentType}>
             <option hidden value=' '>
@@ -63,8 +78,9 @@ const Filter = (params) => {
             <option value='Другое'>Другое</option> {/*!!!!! Доделать */}
           </select>
         </div>
-
-        <div className='col'>
+      </div>
+      <div className='rooms-price-wrapper'>
+        <div className='rooms-filter mr-2'>
           <p>Количество комнат</p>
           <select onChange={roomsHandle} value={rooms}>
             <option hidden value=' '>
@@ -78,7 +94,7 @@ const Filter = (params) => {
           </select>
         </div>
 
-        <div className='col col-sm-4 price-filter'>
+        <div className='price-filter mr-2'>
           <p>Цена</p>
           <div>
             <input
@@ -102,8 +118,20 @@ const Filter = (params) => {
             ></input>
           </div>
         </div>
+      </div>
 
-        <div className='col col-sm-1'>
+      <div className='filter-buttons'>
+        <div>
+          <button
+            type='button'
+            onClick={clearHandleClick}
+            className='btn btn-danger'
+          >
+            Сбросить
+          </button>
+        </div>
+
+        <div>
           <button
             type='button'
             onClick={handleClick}

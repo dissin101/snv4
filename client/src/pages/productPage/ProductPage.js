@@ -42,7 +42,7 @@ const ProductPage = (props) => {
           setError(error);
         }
       );
-  }, []);
+  }, [props.location.pathname]);
 
   if (error) {
     return <div className='mt-3'>Ошибка: {error.message}</div>;
