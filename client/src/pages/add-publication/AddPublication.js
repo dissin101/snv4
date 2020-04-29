@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import CurrencyFormat from "react-currency-format";
 import { ToastContainer, toast } from "react-toastify";
-//
 import "./addPublication.scss";
 
 const AddPublication = () => {
@@ -69,41 +68,31 @@ const AddPublication = () => {
           },
         })
         .then((response) => {
-          //console.log("res", response);
           if (200 === response.status) {
             // If file size is larger than expected.
             if (response.data.error) {
               if ("LIMIT_FILE_SIZE" === response.data.error.code) {
-                //Заглушка под уведомление this.ocShowAlert("Max size: 2MB", "red");
                 toast.info(
                   "Максимальный размер файла для загрузки не должен привышать 4мб."
                 );
               } else if ("LIMIT_UNEXPECTED_FILE" === response.data.error.code) {
-                //Заглушка под уведомление this.ocShowAlert("Max 4 images allowed", "red");
                 toast.info(
                   "Максимальное количество доступных фотографий для загрузки: 10"
                 );
               } else {
-                // If not the given file type
-                // Заглушка под уведомление this.ocShowAlert(response.data.error, "red");
                 toast.error("Вы пытаетесь загрузить файл неверного формата");
               }
             } else {
-              // Success
               let fileName = response.data;
-              console.log("fileName", fileName);
               toast.success("Объявление опубликовано");
             }
           }
         })
         .catch((error) => {
-          // If another error
           toast.error("Произошла ошибка:", error);
         });
     } else {
-      // if file not selected throw error
-      toast.error("Пожалуйста, загрузите фотографии");
-      //this.ocShowAlert("Please upload file", "red");
+      toast.error("Пожалуйста, выберите фотографии для загрузки");
     }
   };
 

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import CurrencyFormat from "react-currency-format";
 import "./filter.scss";
 
 const Filter = (params) => {
@@ -28,11 +29,23 @@ const Filter = (params) => {
     if (form.minPrice === "") {
       params.setMinPriceFilter(null);
     } else {
+      for (let a = 0; a <= form.minPrice.length; a++) {
+        if (form.minPrice[a] === ",") {
+          form.minPrice = form.minPrice.replace(/,/, "");
+        }
+      }
+      form.price = Number(form.minPrice);
       params.setMinPriceFilter(form.minPrice);
     }
     if (form.maxPrice === "") {
       params.setMaxPriceFilter(null);
     } else {
+      for (let a = 0; a <= form.maxPrice.length; a++) {
+        if (form.maxPrice[a] === ",") {
+          form.maxPrice = form.maxPrice.replace(/,/, "");
+        }
+      }
+      form.price = Number(form.maxPrice);
       params.setMaxPriceFilter(form.maxPrice);
     }
   };
@@ -97,25 +110,23 @@ const Filter = (params) => {
         <div className='price-filter mr-2'>
           <p>Цена</p>
           <div>
-            <input
+            <CurrencyFormat
               placeholder='От'
-              type='number'
+              thousandSeparator={true}
               id='minPrice'
               name='minPrice'
-              className='form-control'
               value={form.minPrice}
               onChange={changeHandler}
-            ></input>
+            />
             <span> - </span>
-            <input
+            <CurrencyFormat
               placeholder='До'
-              type='number'
+              thousandSeparator={true}
               id='maxPrice'
               name='maxPrice'
-              className='form-control'
               value={form.maxPrice}
               onChange={changeHandler}
-            ></input>
+            />
           </div>
         </div>
       </div>
