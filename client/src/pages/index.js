@@ -1,5 +1,5 @@
 import Login from "./login";
-import Register from "./register";
+import Register from "./Register";
 import Publications from "./publications";
 import ProductPage from "./productPage";
 import Profile from "./profile";
