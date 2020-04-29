@@ -43,10 +43,12 @@
       display: flex;
       input {
         outline: none;
-        border: none;
-        border-radius: 3px;
+        border: 1px solid grey;
+        border-radius: 5px;
         width: 135px;
         margin: 0 5px;
+        padding: 6px 5px;
+        font-size: 0.8rem;
       }
     }
   }
