@@ -20,8 +20,8 @@ const Filter = (params) => {
   const handleClick = () => {
     params.setCityFilter(form.city);
     params.setRentTypeFilter(rentType);
-    if (rooms == "") {
-      params.setRoomsFilter(null);
+    if (rooms === "") {
+      params.setRoomsFilter("");
     } else {
       params.setRoomsFilter(rooms);
     }

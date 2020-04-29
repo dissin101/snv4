@@ -58,9 +58,10 @@ const Publications = ({ value }) => {
   const filterPublications = publications
     .filter(filterCity)
     .filter(filterType)
+    .filter(filterRooms)
     .filter(filterMinPrice)
     .filter(filterMaxPrice);
-  //.filter(filterRooms);
+
   const showPublication = filterPublications.map((publication) => {
     const publicationCard = (
       <Publication params={publication} key={publication._id} />
