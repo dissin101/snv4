@@ -42,6 +42,9 @@
     div {
       display: flex;
       input {
+        outline: none;
+        border: none;
+        border-radius: 3px;
         width: 135px;
         margin: 0 5px;
       }

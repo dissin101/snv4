@@ -63,6 +63,18 @@ const Filter = (params) => {
       setRooms("");
       params.setRoomsFilter("");
     }
+
+    if (form.minPrice != null) {
+      form.minPrice = "";
+      params.setMinPriceFilter(null);
+    }
+
+    if (form.maxPrice != null) {
+      form.maxPrice = "";
+      params.setMaxPriceFilter(null);
+    }
+
+    // PRICE
   };
   return (
     <div className='container filter navbar-dark bg-dark'>
