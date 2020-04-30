@@ -72,10 +72,15 @@
       margin: 2%;
       width: 100%;
 
+      .rooms-filter {
+        margin-right: 2px !important;
+      }
+
       .city-filter,
       .type-filter,
       .rooms-filter,
       .price-filter {
+        margin: 0;
         width: 50%;
       }
 
@@ -88,10 +93,11 @@
       }
     }
     .filter-buttons {
+      margin-top: 1rem;
       flex-direction: row;
 
       .btn-success {
-        margin: 0 15px;
+        margin: 0 10px;
       }
     }
   }
