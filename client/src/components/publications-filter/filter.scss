@@ -101,4 +101,19 @@
       }
     }
   }
+
+  @media screen and (max-width: 358px) {
+    .city-type-wrapper,
+    .rooms-price-wrapper {
+      flex-direction: column;
+
+      .city-filter,
+      .type-filter,
+      .rooms-filter,
+      .price-filter {
+        margin: 0;
+        width: 100%;
+      }
+    }
+  }
 }
