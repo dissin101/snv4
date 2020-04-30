@@ -2,6 +2,7 @@
   margin: 1rem 0;
   display: flex;
   flex-direction: row;
+  //justify-content: space-between !important;
 
   h1 {
     font-size: 1.4rem;
@@ -14,5 +15,4 @@
     flex-wrap: wrap;
     justify-content: flex-start !important;
   }
-
 }
