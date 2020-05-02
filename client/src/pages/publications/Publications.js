@@ -39,8 +39,6 @@ const Publications = ({ value }) => {
   }
 
   function filterRooms(value) {
-    console.log("1", typeof roomsFilter);
-    console.log(typeof value.rooms.toString());
     if (roomsFilter === "") return value.rooms;
     if (roomsFilter === value.rooms.toString()) return value.rooms;
   }
