@@ -10,6 +10,9 @@ const Profile = (props) => {
   const history = useHistory();
   const auth = useContext(AuthContext);
 
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+
   useEffect(() => {
     fetch("/api/profile/me", {
       method: "GET",
@@ -18,19 +21,22 @@ const Profile = (props) => {
       },
     })
       .then((response) => response.json())
-      .then((data) => {
-        setProfileInfo(data);
-      });
+      .then(
+        (data) => {
+          setIsLoaded(true);
+          setProfileInfo(data);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      );
   }, [setProfileInfo]);
 
   if (profileInfo.msg === "Token is not valid") {
     alert("Время сессии истекло, повторите авторизацию.");
     auth.logout();
     history.push("/");
-  }
-
-  if (profileInfo.length === 0) {
-    return <div className='mt-3'>Загрузка...</div>;
   }
 
   function ProfileTabs(props) {
@@ -40,44 +46,49 @@ const Profile = (props) => {
       return <ProfileSettings value={props.profileInfo} />;
     }
   }
-
-  return (
-    <div className='emp-profile border'>
-      <div className='row'>
-        <div className='col-md-4'>
-          <div className='profile-img'>
-            <img
-              src='https://sun9-14.userapi.com/c206528/v206528135/f6dc9/S4EzUF9UDaE.jpg'
-              alt='profile img'
-            />
+  if (error) {
+    return <div className='mt-3'>Ошибка: {error.message}</div>;
+  } else if (isLoaded === false) {
+    return <div className='mt-3'>Загрузка...</div>;
+  } else {
+    return (
+      <div className='emp-profile border'>
+        <div className='row'>
+          <div className='col-md-4'>
+            <div className='profile-img'>
+              <img
+                src='https://sun9-14.userapi.com/c206528/v206528135/f6dc9/S4EzUF9UDaE.jpg'
+                alt='profile img'
+              />
+            </div>
+          </div>
+          <div className='col-md-8'>
+            <div className='profile-head'>
+              <h5>{`${profileInfo.name} ${profileInfo.surname}`}</h5>
+            </div>
+            <div className='add-container border'>Блок рекламы</div>
           </div>
         </div>
-        <div className='col-md-8'>
-          <div className='profile-head'>
-            <h5>{`${profileInfo.name} ${profileInfo.surname}`}</h5>
+        <div className='row'>
+          <div className='col-md-4'>
+            <div className='profile-work'>
+              <p>Параметры аккаунта</p>
+              <Link to='/profile/me'>Мой профиль</Link>
+              <br />
+              <Link to='/profile/publications'>Мои публикации</Link>
+              <br />
+              <Link to='/profile/settings'>Настройки</Link>
+            </div>
           </div>
-          <div className='add-container border'>Блок рекламы</div>
+          <div className='col-md-8 mt-5'>
+            <div className='tab-content profile-tab' id='myTabContent'>
+              <ProfileTabs route={props.value} profileInfo={profileInfo} />
+            </div>
+          </div>
         </div>
       </div>
-      <div className='row'>
-        <div className='col-md-4'>
-          <div className='profile-work'>
-            <p>Параметры аккаунта</p>
-            <Link to='/profile/me'>Мой профиль</Link>
-            <br />
-            <Link to='/profile/publications'>Мои публикации</Link>
-            <br />
-            <Link to='/profile/settings'>Настройки</Link>
-          </div>
-        </div>
-        <div className='col-md-8 mt-5'>
-          <div className='tab-content profile-tab' id='myTabContent'>
-            <ProfileTabs route={props.value} profileInfo={profileInfo} />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default Profile;

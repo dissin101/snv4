@@ -27,7 +27,6 @@ const ProductPage = (props) => {
     type: "",
     msg: "",
   });
-  console.log(publication);
 
   useEffect(() => {
     fetch(`/api${props.location.pathname}`)

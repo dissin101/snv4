@@ -4,6 +4,7 @@ const config = require("config");
 const { check, validationResult } = require("express-validator");
 const User = require("../models/User");
 const Profile = require("../models/Profile");
+const Publication = require("../models/Publication");
 const auth = require("../middleware/auth");
 const jwt = require("jsonwebtoken");
 const jwtDecode = require("jwt-decode");
@@ -24,10 +25,12 @@ router.get("/me", auth, async (req, res) => {
   try {
     let userData = await User.findById(decode.userId);
     let profile = await Profile.findOne({ user: decode.userId });
+    let publications = await Publication.find({ author: decode.userId });
 
     profileFields.name = userData.name;
     profileFields.surname = userData.surname;
     profileFields.email = userData.email;
+    profileFields.publications = publications.length;
 
     if (!profile) {
       // Create profile
@@ -50,8 +53,6 @@ router.get("/me", auth, async (req, res) => {
 
 router.post("/settings", auth, async (req, res) => {
   const { name, surname, phone, email, city } = req.body;
-
-  console.log(req.body);
 
   // Get user ID from token
   const token = req.header("x-auth-token");

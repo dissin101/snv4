@@ -1,7 +1,6 @@
 import React, { Fragment, useContext } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-//
 const Navbar = (isAuthenticated) => {
   const isAuth = isAuthenticated.value.isAuthenticated;
   const history = useHistory();

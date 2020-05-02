@@ -83,7 +83,6 @@ const AddPublication = () => {
                 toast.error("Вы пытаетесь загрузить файл неверного формата");
               }
             } else {
-              let fileName = response.data;
               toast.success("Объявление опубликовано");
             }
           }

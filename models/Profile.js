@@ -23,6 +23,9 @@ const ProfileSchema = new mongoose.Schema({
   phone: {
     type: String,
   },
+  publications: {
+    type: Number,
+  },
 });
 
 module.exports = Profile = mongoose.model("profile", ProfileSchema);

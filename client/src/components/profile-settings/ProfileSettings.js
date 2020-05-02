@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { useHttp } from "../../hooks/http.hook";
 import NumberFormat from "react-number-format";
+import { Redirect, useHistory } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 const ProfileSettings = (props) => {
   const profileInfo = props.value;
-  const { loading, request } = useHttp();
   const usrData = JSON.parse(localStorage.getItem("userData"));
   const [form, setForm] = useState({
     name: "",
@@ -18,28 +18,51 @@ const ProfileSettings = (props) => {
     setForm({ ...form, [event.target.name]: event.target.value });
   };
 
-  const changeButtonHadler = async () => {
-    try {
-      await request(
-        "/api/profile/settings",
-        "POST",
-        { ...form },
-        { "x-auth-token": usrData.token }
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [success, isSuccess] = useState(false);
+  let history = useHistory();
+  const changeButtonHadler = () => {
+    fetch("/api/profile/settings", {
+      method: "POST",
+      body: JSON.stringify(form),
+      headers: {
+        "Content-Type": "application/json",
+        "x-auth-token": usrData.token,
+      },
+    })
+      .then((response) => response.json())
+      .then(
+        (data) => {
+          setIsLoaded(true);
+          isSuccess(true);
+          //history.push("/publications");
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
       );
-    } catch (error) {}
   };
+  if (error) {
+    return <div className='mt-3'>Ошибка: {error.message}</div>;
+  } else if (success) {
+    setTimeout(() => {
+      history.push("/publications");
+    }, 2000);
+    return (
+      <div className='bg-success p-2'>
+        <h6 className='text-white'>
+          Данные успешно изменены, сейчас Вы будете перенаправлены на главную
+          страницу
+        </h6>
+      </div>
+    );
+  }
 
   return (
     <div>
       <div>
-        <div className='row'>
-          <div className='col-md-12 bg-warning p-2 ml-1 mb-3'>
-            <span>
-              Внимание! Обновленная информация будет видна только после
-              перезагрузки страницы!
-            </span>
-          </div>
-        </div>
         <div className='row'>
           <div className='col-md-6'>
             <label>Имя</label>
@@ -127,7 +150,7 @@ const ProfileSettings = (props) => {
             <button
               className='btn btn-success pt-2 pb-2 pl-4 pr-4'
               onClick={changeButtonHadler}
-              disabled={loading}
+              disabled={isLoaded}
             >
               Изменить
             </button>
