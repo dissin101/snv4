@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import NumberFormat from "react-number-format";
-import { Redirect, useHistory } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { useHistory } from "react-router-dom";
 
 const ProfileSettings = (props) => {
   const profileInfo = props.value;
@@ -36,7 +35,6 @@ const ProfileSettings = (props) => {
         (data) => {
           setIsLoaded(true);
           isSuccess(true);
-          //history.push("/publications");
         },
         (error) => {
           setIsLoaded(true);
@@ -52,10 +50,10 @@ const ProfileSettings = (props) => {
     }, 2000);
     return (
       <div className='bg-success p-2'>
-        <h6 className='text-white'>
+        <p className='text-white'>
           Данные успешно изменены, сейчас Вы будете перенаправлены на главную
           страницу
-        </h6>
+        </p>
       </div>
     );
   }

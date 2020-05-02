@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import CurrencyFormat from "react-currency-format";
 import { ToastContainer, toast } from "react-toastify";
+import { useHistory } from "react-router-dom";
 import "./addPublication.scss";
 
 const AddPublication = () => {
@@ -34,10 +35,64 @@ const AddPublication = () => {
     useSelectedFiles(event.target.files);
   };
 
+  const [publicationAdd, setPublicationAdd] = useState(false);
+  let history = useHistory();
   const handleClick = async () => {
-    form.type = rentType;
     form.category = category;
+    if (form.category === "") {
+      toast.error(`Поле "Рубрика" не должно быть пустым`);
+      return;
+    }
+    form.type = rentType;
+    if (form.type === "") {
+      toast.error(`Поле "Тип недвижимости" не должно быть пустым`);
+      return;
+    }
     form.rooms = roomsCount;
+    if (form.rooms === "") {
+      toast.error(`Поле "Количество комнат" не должно быть пустым`);
+      return;
+    }
+
+    if (form.city === "") {
+      toast.error(`Поле "Город" не должно быть пустым`);
+      return;
+    }
+
+    if (form.address === "") {
+      toast.error(`Поле "Адрес" не должно быть пустым`);
+      return;
+    }
+
+    if (form.dateOfBuild === "") {
+      toast.error(`Поле "Год постройки" не должно быть пустым`);
+      return;
+    }
+
+    if (form.floor === "") {
+      toast.error(`Поле "Этаж" не должно быть пустым`);
+      return;
+    }
+
+    if (form.floorsInBuilding === "") {
+      toast.error(`Поле "Этажей в здании" не должно быть пустым`);
+      return;
+    }
+
+    if (form.area === "") {
+      toast.error(`Поле "Площадь" не должно быть пустым`);
+      return;
+    }
+
+    if (form.price === "") {
+      toast.error(`Поле "Цена" не должно быть пустым`);
+      return;
+    }
+
+    if (form.description === "") {
+      toast.error(`Поле "Описание" не должно быть пустым`);
+      return;
+    }
     form.rooms = Number(form.rooms);
     form.dateOfBuild = Number(form.dateOfBuild);
     form.floor = Number(form.floor);
@@ -83,6 +138,8 @@ const AddPublication = () => {
                 toast.error("Вы пытаетесь загрузить файл неверного формата");
               }
             } else {
+              //
+              setPublicationAdd(true);
               toast.success("Объявление опубликовано");
             }
           }
@@ -110,6 +167,19 @@ const AddPublication = () => {
     setRooms(event.target.value);
   };
 
+  if (publicationAdd === true) {
+    setTimeout(() => {
+      history.push("/publications");
+    }, 2000);
+    return (
+      <div className='bg-success p-2'>
+        <p className='text-white'>
+          Объявление опубликовано, сейчас Вы будете перенаправлены на главную
+          страницу
+        </p>
+      </div>
+    );
+  }
   return (
     <div className='border add-publication'>
       <h4 className='border-bottom pb-4 mt-1 mb-4'>Опубликовать объявление</h4>
@@ -191,6 +261,7 @@ const AddPublication = () => {
             <input
               className='border'
               type='number'
+              min={1900}
               placeholder='2017'
               id='dateOfBuild'
               name='dateOfBuild'
@@ -202,6 +273,7 @@ const AddPublication = () => {
             <input
               className='border'
               type='number'
+              min={0}
               placeholder='2'
               id='floor'
               name='floor'
@@ -213,6 +285,7 @@ const AddPublication = () => {
             <input
               className='border'
               type='number'
+              min={0}
               placeholder='2'
               id='floorsInBuilding'
               name='floorsInBuilding'
@@ -229,6 +302,7 @@ const AddPublication = () => {
             <input
               className='border'
               type='number'
+              min={0}
               placeholder='50'
               id='area'
               name='area'
@@ -240,6 +314,7 @@ const AddPublication = () => {
             <CurrencyFormat
               placeholder='15,500,000&#8376;'
               thousandSeparator={true}
+              min={0}
               id='price'
               name='price'
               value={form.price}

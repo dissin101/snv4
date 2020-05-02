@@ -31,7 +31,7 @@ const Profile = (props) => {
           setError(error);
         }
       );
-  }, [setProfileInfo]);
+  }, [setProfileInfo, usrData.token]);
 
   if (profileInfo.msg === "Token is not valid") {
     alert("Время сессии истекло, повторите авторизацию.");

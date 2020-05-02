@@ -26,7 +26,7 @@ const ProfileInfo = (props) => {
             <label>Город</label>
           </div>
           <div className='col-md-6'>
-            <p>{profileInfo.city}</p>
+            {profileInfo.city ? <p> {profileInfo.city} </p> : <p>Не указан</p>}
           </div>
         </div>
         <div className='row'>
@@ -54,7 +54,11 @@ const ProfileInfo = (props) => {
             <label>Число публикаций</label>
           </div>
           <div className='col-md-6'>
-            {profileInfo.publications ? profileInfo.publications : <p>0</p>}
+            {profileInfo.publications ? (
+              <p>{profileInfo.publications}</p>
+            ) : (
+              <p>0</p>
+            )}
           </div>
         </div>
       </div>
