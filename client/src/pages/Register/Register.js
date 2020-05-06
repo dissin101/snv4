@@ -93,7 +93,7 @@ const Register = () => {
               <input
                 placeholder='mail@example.com'
                 id='email'
-                type='text'
+                type='email'
                 name='email'
                 className='form-control'
                 value={form.email}

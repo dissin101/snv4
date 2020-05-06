@@ -62,7 +62,7 @@ const Login = () => {
                 <input
                   placeholder='Введите Email'
                   id='email'
-                  type='text'
+                  type='email'
                   name='email'
                   className='form-control'
                   value={form.email}
