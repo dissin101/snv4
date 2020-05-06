@@ -6,6 +6,29 @@
   }
 
   .carousel-root {
+    .slide {
+      div,
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .thumb {
+      height: 50px;
+      opacity: 0.5;
+      padding: 1px;
+    }
+
+    .thumb:hover {
+      border: 1px solid grey;
+    }
+
+    .selected {
+      opacity: 1;
+      border: none;
+    }
+
     .carousel-status {
       display: none;
     }
