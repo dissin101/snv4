@@ -132,3 +132,21 @@
     }
   }
 }
+
+@media screen and (max-width: 506px) {
+  .product-card {
+    .responsive-table,
+    .date-of-build {
+      .table-block {
+        max-width: 200px;
+        min-width: 150px;
+        width: 100%;
+        padding: 0.75rem 2rem 0.25rem 0.75rem;
+      }
+
+      .t-head {
+        font-size: 0.8rem;
+      }
+    }
+  }
+}
