@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useHistory, Link } from "react-router-dom";
 import { ProfileInfo, ProfileSettings } from "../../components";
+import { ToastContainer, toast } from "react-toastify";
 import "./profile.scss";
 
 const Profile = (props) => {
@@ -31,12 +32,12 @@ const Profile = (props) => {
           setError(error);
         }
       );
-  }, [setProfileInfo, usrData.token]);
+  }, [setProfileInfo]);
 
   if (profileInfo.msg === "Token is not valid") {
-    alert("Время сессии истекло, повторите авторизацию.");
+    toast.warn("Время сессии истекло, повторите авторизацию.");
     auth.logout();
-    history.push("/");
+    history.push("/login");
   }
 
   function ProfileTabs(props) {
@@ -53,6 +54,17 @@ const Profile = (props) => {
   } else {
     return (
       <div className='emp-profile border'>
+        <ToastContainer
+          position='top-right'
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnVisibilityChange
+          draggable={false}
+          pauseOnHover
+        />
         <div className='row'>
           <div className='col-md-4'>
             <div className='profile-img'>

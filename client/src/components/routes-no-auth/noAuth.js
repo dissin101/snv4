@@ -21,7 +21,7 @@ const NoAuthRoutes = () => {
           <Publications value='rent' />
         </Route>
         <Route path='/rent/:id' component={ProductPage} />
-        <Redirect to='/publications' />
+        <Redirect to='/login' />
       </Switch>
     </Fragment>
   );
