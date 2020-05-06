@@ -100,3 +100,17 @@ footer p {
   height: 20px;
   text-align: center;
 }
+
+@media screen and (max-width: 580px) {
+  .footer {
+    .row {
+      flex-direction: column;
+      align-items: center;
+
+      div {
+        width: 300px;
+        max-width: 100% !important;
+      }
+    }
+  }
+}
